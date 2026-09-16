@@ -2245,7 +2245,7 @@ onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
 </div>
 
 <div class="card-subtitle">
-แสดง 5 จังหวัดต่อหน้า เรียงจากพื้นที่มากไปน้อย และไล่เฉดสีเขียวเข้มไปอ่อนภายในหน้านั้น
+สรุปพื้นที่ป่าสงวนฯ ตามข้อมูลที่กำลังแสดงบนแผนที่ และเรียงจากพื้นที่มากไปน้อย
 </div>
 
 <div class="forest-wrap">
@@ -2269,7 +2269,7 @@ onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
 </div>
 
 <div class="foot-note">
-คลิกแท่งจังหวัดเพื่อซูมไปยังจุด อปท. ของจังหวัดนั้น
+คลิกแท่งจังหวัดเพื่อเลือกจังหวัด และคลิกจังหวัดเดิมซ้ำเพื่อกลับมาแสดงทุกจังหวัด
 </div>
 
 </div>
@@ -2582,6 +2582,44 @@ checked
 
 </label>
 
+</div>
+
+
+<div class="layer-row">
+
+<div class="layer-left">
+
+<div class="layer-icon">
+<i class="bi bi-map-fill"></i>
+</div>
+
+<div class="layer-name">
+แบ่งสีตามภาค
+</div>
+
+</div>
+
+<label class="switch">
+
+<input
+id="regionToggle"
+type="checkbox"
+>
+
+<span class="switch-slider"></span>
+
+</label>
+
+</div>
+
+<div id="regionLegend" style="display:none;margin:9px 2px 14px;padding:10px 12px;border:1px solid #e4ebe7;border-radius:14px;background:#f8fbf9;font-size:8px;line-height:1.8;color:#5f6e67">
+<div><span style="display:inline-block;width:9px;height:9px;border-radius:3px;background:#8E6CCF;margin-right:7px"></span>กรุงเทพมหานครและปริมณฑล</div>
+<div><span style="display:inline-block;width:9px;height:9px;border-radius:3px;background:#4E9F71;margin-right:7px"></span>ภาคกลาง</div>
+<div><span style="display:inline-block;width:9px;height:9px;border-radius:3px;background:#3B82C4;margin-right:7px"></span>ภาคตะวันออก</div>
+<div><span style="display:inline-block;width:9px;height:9px;border-radius:3px;background:#E2A93B;margin-right:7px"></span>ภาคตะวันออกเฉียงเหนือ</div>
+<div><span style="display:inline-block;width:9px;height:9px;border-radius:3px;background:#D96C6C;margin-right:7px"></span>ภาคเหนือ</div>
+<div><span style="display:inline-block;width:9px;height:9px;border-radius:3px;background:#37A6A1;margin-right:7px"></span>ภาคใต้</div>
+<div><span style="display:inline-block;width:9px;height:9px;border-radius:3px;background:#9A7B5B;margin-right:7px"></span>ภาคตะวันตก</div>
 </div>
 
 
@@ -3748,6 +3786,16 @@ preferCanvas:true
 6
 );
 
+/* REGION PANE
+   สร้าง pane จริงเพียงครั้งเดียว และใช้ renderer ร่วมกันทุกจังหวัด */
+map.createPane("regionPane");
+map.getPane("regionPane").style.zIndex = "350";
+map.getPane("regionPane").style.pointerEvents = "none";
+const regionRenderer = L.svg({
+    pane:"regionPane",
+    padding:.5
+});
+
 L.control.zoom(
 {
 position:"bottomright"
@@ -3817,6 +3865,8 @@ features:[]
 
 let provinceLayer = null;
 
+let regionLayer = null;
+
 let districtLayer = null;
 
 let subdistrictLayer = null;
@@ -3872,7 +3922,9 @@ selectedYear:"",
 
 riskLevel:"all",
 
-forestPage:1
+forestPage:1,
+
+regionColors:false
 
 };
 
@@ -5338,7 +5390,14 @@ elements[0].index
 ไม่ใช่แค่ซูมเข้าไปเฉย ๆ
 */
 
+const sameProvince =
+state.filters.province === province;
+
 state.filters.province =
+sameProvince
+?
+""
+:
 province;
 
 state.filters.district = "";
@@ -5346,12 +5405,6 @@ state.filters.district = "";
 state.filters.subdistrict = "";
 
 state.filters.lao = "";
-
-state.selectedType = "";
-
-state.selectedYear = "";
-
-state.riskLevel = "all";
 
 state.forestPage = 1;
 
@@ -6097,6 +6150,8 @@ return clean(
 getAny(
 p,
 [
+"P_NAME_T",
+"P_NAME_E",
 "PROV_NAM_T",
 "จังหวัด",
 "CHANGWAT_T",
@@ -6110,15 +6165,355 @@ p,
 }
 
 
-function provinceStyle(feature){
+const REGION_COLORS = {
+"กรุงเทพมหานครและปริมณฑล":"#8E6CCF",
+"ภาคกลาง":"#4E9F71",
+"ภาคตะวันออก":"#3B82C4",
+"ภาคตะวันออกเฉียงเหนือ":"#E2A93B",
+"ภาคเหนือ":"#D96C6C",
+"ภาคใต้":"#37A6A1",
+"ภาคตะวันตก":"#9A7B5B"
+};
+
+const PROVINCE_REGION = {
+"กรุงเทพมหานคร":"กรุงเทพมหานครและปริมณฑล",
+"นครปฐม":"กรุงเทพมหานครและปริมณฑล",
+"นนทบุรี":"กรุงเทพมหานครและปริมณฑล",
+"ปทุมธานี":"กรุงเทพมหานครและปริมณฑล",
+"สมุทรปราการ":"กรุงเทพมหานครและปริมณฑล",
+"สมุทรสาคร":"กรุงเทพมหานครและปริมณฑล",
+
+"อ่างทอง":"ภาคกลาง",
+"ชัยนาท":"ภาคกลาง",
+"ลพบุรี":"ภาคกลาง",
+"อยุธยา":"ภาคกลาง",
+"พระนครศรีอยุธยา":"ภาคกลาง",
+"สระบุรี":"ภาคกลาง",
+"สิงห์บุรี":"ภาคกลาง",
+
+"ฉะเชิงเทรา":"ภาคตะวันออก",
+"จันทบุรี":"ภาคตะวันออก",
+"ชลบุรี":"ภาคตะวันออก",
+"นครนายก":"ภาคตะวันออก",
+"ปราจีนบุรี":"ภาคตะวันออก",
+"ระยอง":"ภาคตะวันออก",
+"สระแก้ว":"ภาคตะวันออก",
+"ตราด":"ภาคตะวันออก",
+
+"อำนาจเจริญ":"ภาคตะวันออกเฉียงเหนือ",
+"บึงกาฬ":"ภาคตะวันออกเฉียงเหนือ",
+"บุรีรัมย์":"ภาคตะวันออกเฉียงเหนือ",
+"ชัยภูมิ":"ภาคตะวันออกเฉียงเหนือ",
+"กาฬสินธุ์":"ภาคตะวันออกเฉียงเหนือ",
+"ขอนแก่น":"ภาคตะวันออกเฉียงเหนือ",
+"เลย":"ภาคตะวันออกเฉียงเหนือ",
+"มหาสารคาม":"ภาคตะวันออกเฉียงเหนือ",
+"มุกดาหาร":"ภาคตะวันออกเฉียงเหนือ",
+"นครพนม":"ภาคตะวันออกเฉียงเหนือ",
+"โคราช":"ภาคตะวันออกเฉียงเหนือ",
+"นครราชสีมา":"ภาคตะวันออกเฉียงเหนือ",
+"หนองบัวลำภู":"ภาคตะวันออกเฉียงเหนือ",
+"หนองคาย":"ภาคตะวันออกเฉียงเหนือ",
+"ร้อยเอ็ด":"ภาคตะวันออกเฉียงเหนือ",
+"สกลนคร":"ภาคตะวันออกเฉียงเหนือ",
+"ศรีสะเกษ":"ภาคตะวันออกเฉียงเหนือ",
+"สุรินทร์":"ภาคตะวันออกเฉียงเหนือ",
+"อุบลราชธานี":"ภาคตะวันออกเฉียงเหนือ",
+"อุดรธานี":"ภาคตะวันออกเฉียงเหนือ",
+"ยโสธร":"ภาคตะวันออกเฉียงเหนือ",
+
+"เชียงใหม่":"ภาคเหนือ",
+"เชียงราย":"ภาคเหนือ",
+"กำแพงเพชร":"ภาคเหนือ",
+"ลำปาง":"ภาคเหนือ",
+"ลำพูน":"ภาคเหนือ",
+"แม่ฮ่องสอน":"ภาคเหนือ",
+"นครสวรรค์":"ภาคเหนือ",
+"น่าน":"ภาคเหนือ",
+"พะเยา":"ภาคเหนือ",
+"เพชรบูรณ์":"ภาคเหนือ",
+"พิจิตร":"ภาคเหนือ",
+"พิษณุโลก":"ภาคเหนือ",
+"แพร่":"ภาคเหนือ",
+"สุโขทัย":"ภาคเหนือ",
+"ตาก":"ภาคเหนือ",
+"อุทัยธานี":"ภาคเหนือ",
+"อุตรดิตถ์":"ภาคเหนือ",
+
+"ชุมพร":"ภาคใต้",
+"กระบี่":"ภาคใต้",
+"นครศรีธรรมราช":"ภาคใต้",
+"นราธิวาส":"ภาคใต้",
+"ปัตตานี":"ภาคใต้",
+"พังงา":"ภาคใต้",
+"พัทลุง":"ภาคใต้",
+"ภูเก็ต":"ภาคใต้",
+"ระนอง":"ภาคใต้",
+"สตูล":"ภาคใต้",
+"สงขลา":"ภาคใต้",
+"สุราษฎร์ธานี":"ภาคใต้",
+"ตรัง":"ภาคใต้",
+"ยะลา":"ภาคใต้",
+
+"กาญจนบุรี":"ภาคตะวันตก",
+"เพชรบุรี":"ภาคตะวันตก",
+"ประจวบคีรีขันธ์":"ภาคตะวันตก",
+"ราชบุรี":"ภาคตะวันตก",
+"สมุทรสงคราม":"ภาคตะวันตก",
+"สุพรรณบุรี":"ภาคตะวันตก"
+};
+
+function normalizeProvinceForRegion(name){
+return clean(name)
+.replace(/^จังหวัด/,"")
+.replace(/^จ\.?\s*/,"")
+.replace(/\s*Province$/i,"")
+.replace(/[._-]/g," ")
+.replace(/\s+/g," ")
+.trim();
+}
+
+const PROVINCE_REGION_EN = {
+"Bangkok":"กรุงเทพมหานครและปริมณฑล",
+"Nakhon Pathom":"กรุงเทพมหานครและปริมณฑล",
+"Nonthaburi":"กรุงเทพมหานครและปริมณฑล",
+"Pathum Thani":"กรุงเทพมหานครและปริมณฑล",
+"Samut Prakan":"กรุงเทพมหานครและปริมณฑล",
+"Samut Sakhon":"กรุงเทพมหานครและปริมณฑล",
+"Ang Thong":"ภาคกลาง",
+"Chainat":"ภาคกลาง",
+"Lopburi":"ภาคกลาง",
+"Phra Nakhon Si Ayutthaya":"ภาคกลาง",
+"Ayutthaya":"ภาคกลาง",
+"Saraburi":"ภาคกลาง",
+"Sing Buri":"ภาคกลาง",
+"Singburi":"ภาคกลาง",
+"Chachoengsao":"ภาคตะวันออก",
+"Chanthaburi":"ภาคตะวันออก",
+"Chon Buri":"ภาคตะวันออก",
+"Chonburi":"ภาคตะวันออก",
+"Nakhon Nayok":"ภาคตะวันออก",
+"Prachin Buri":"ภาคตะวันออก",
+"Prachinburi":"ภาคตะวันออก",
+"Rayong":"ภาคตะวันออก",
+"Sa Kaeo":"ภาคตะวันออก",
+"Trat":"ภาคตะวันออก",
+"Amnat Charoen":"ภาคตะวันออกเฉียงเหนือ",
+"Bueng Kan":"ภาคตะวันออกเฉียงเหนือ",
+"Buri Ram":"ภาคตะวันออกเฉียงเหนือ",
+"Buriram":"ภาคตะวันออกเฉียงเหนือ",
+"Chaiyaphum":"ภาคตะวันออกเฉียงเหนือ",
+"Kalasin":"ภาคตะวันออกเฉียงเหนือ",
+"Khon Kaen":"ภาคตะวันออกเฉียงเหนือ",
+"Loei":"ภาคตะวันออกเฉียงเหนือ",
+"Maha Sarakham":"ภาคตะวันออกเฉียงเหนือ",
+"Mukdahan":"ภาคตะวันออกเฉียงเหนือ",
+"Nakhon Phanom":"ภาคตะวันออกเฉียงเหนือ",
+"Nakhon Ratchasima":"ภาคตะวันออกเฉียงเหนือ",
+"Nong Bua Lamphu":"ภาคตะวันออกเฉียงเหนือ",
+"Nong Khai":"ภาคตะวันออกเฉียงเหนือ",
+"Roi Et":"ภาคตะวันออกเฉียงเหนือ",
+"Sakon Nakhon":"ภาคตะวันออกเฉียงเหนือ",
+"Si Sa Ket":"ภาคตะวันออกเฉียงเหนือ",
+"Si Saket":"ภาคตะวันออกเฉียงเหนือ",
+"Surin":"ภาคตะวันออกเฉียงเหนือ",
+"Ubon Ratchathani":"ภาคตะวันออกเฉียงเหนือ",
+"Udon Thani":"ภาคตะวันออกเฉียงเหนือ",
+"Yasothon":"ภาคตะวันออกเฉียงเหนือ",
+"Chiang Mai":"ภาคเหนือ",
+"Chiang Rai":"ภาคเหนือ",
+"Kamphaeng Phet":"ภาคเหนือ",
+"Lampang":"ภาคเหนือ",
+"Lamphun":"ภาคเหนือ",
+"Mae Hong Son":"ภาคเหนือ",
+"Nakhon Sawan":"ภาคเหนือ",
+"Nan":"ภาคเหนือ",
+"Phayao":"ภาคเหนือ",
+"Phetchabun":"ภาคเหนือ",
+"Phichit":"ภาคเหนือ",
+"Phitsanulok":"ภาคเหนือ",
+"Phrae":"ภาคเหนือ",
+"Sukhothai":"ภาคเหนือ",
+"Tak":"ภาคเหนือ",
+"Uthai Thani":"ภาคเหนือ",
+"Uttaradit":"ภาคเหนือ",
+"Chumphon":"ภาคใต้",
+"Krabi":"ภาคใต้",
+"Nakhon Si Thammarat":"ภาคใต้",
+"Narathiwat":"ภาคใต้",
+"Pattani":"ภาคใต้",
+"Phang Nga":"ภาคใต้",
+"Phatthalung":"ภาคใต้",
+"Phuket":"ภาคใต้",
+"Ranong":"ภาคใต้",
+"Satun":"ภาคใต้",
+"Songkhla":"ภาคใต้",
+"Surat Thani":"ภาคใต้",
+"Trang":"ภาคใต้",
+"Yala":"ภาคใต้",
+"Kanchanaburi":"ภาคตะวันตก",
+"Phetchaburi":"ภาคตะวันตก",
+"Prachuap Khiri Khan":"ภาคตะวันตก",
+"Ratchaburi":"ภาคตะวันตก",
+"Samut Songkhram":"ภาคตะวันตก",
+"Suphan Buri":"ภาคตะวันตก",
+"Suphanburi":"ภาคตะวันตก"
+};
+
+function getProvinceRegion(name){
+
+const normalized =
+normalizeProvinceForRegion(name);
+
+if(!normalized){
+return "";
+}
+
+if(PROVINCE_REGION[normalized]){
+return PROVINCE_REGION[normalized];
+}
+
+const englishKey =
+Object.keys(PROVINCE_REGION_EN)
+.find(
+key=>
+key.toLowerCase() ===
+normalized.toLowerCase()
+);
+
+return englishKey
+? PROVINCE_REGION_EN[englishKey]
+: "";
+}
+
+function getProvinceRegionColor(name){
+const region = getProvinceRegion(name);
+return REGION_COLORS[region] || "#B8C5C0";
+}
+
+
+/* REGION FILL LAYER
+   ใช้ชั้นแยกจากขอบเขตจังหวัด เพื่อไม่ให้ hover/selection ลบสีภาค */
+function regionStyle(feature){
+
+const p = feature.properties || {};
 
 const name =
-provinceName(
-feature.properties || {}
+clean(p.P_NAME_T)
+|| clean(p.P_NAME_E)
+|| provinceName(p);
+
+const region =
+getProvinceRegion(name);
+
+const color =
+REGION_COLORS[region]
+|| "#B8C5C0";
+
+return {
+stroke:true,
+color:"#ffffff",
+weight:.7,
+opacity:.6,
+fill:true,
+fillColor:color,
+fillOpacity:.54,
+interactive:false
+};
+
+}
+
+function createRegionLayer(data){
+
+return L.geoJSON(
+data,
+{
+pane:"regionPane",
+renderer:regionRenderer,
+style:regionStyle,
+interactive:false
+}
 );
+
+}
+
+function provinceStyle(feature){
+
+const p =
+feature.properties || {};
+
+const name =
+provinceName(p);
 
 const selected =
 state.filters.province;
+
+/* ใช้ provinceLayer ระบายสีตามภาคโดยตรง
+   เพื่อตัดปัญหา regionLayer ซ้อนทับ/renderer/pane */
+if(state.regionColors){
+
+const thaiName =
+normalizeProvinceForRegion(
+clean(p.P_NAME_T)
+||
+name
+);
+
+const region =
+PROVINCE_REGION[thaiName]
+||
+getProvinceRegion(
+clean(p.P_NAME_E)
+);
+
+const regionColor =
+REGION_COLORS[region]
+||
+"#B8C5C0";
+
+if(!region){
+console.warn(
+"ไม่พบภาคของจังหวัด:",
+p.P_NAME_T,
+p.P_NAME_E
+);
+}
+
+if(
+selected &&
+name === selected
+){
+return {
+color:"#f39a36",
+weight:3.2,
+opacity:1,
+fill:true,
+fillColor:regionColor,
+fillOpacity:.72
+};
+}
+
+if(selected){
+return {
+color:"#75877f",
+weight:.9,
+opacity:.65,
+fill:true,
+fillColor:regionColor,
+fillOpacity:.34
+};
+}
+
+return {
+color:"#ffffff",
+weight:.8,
+opacity:.72,
+fill:true,
+fillColor:regionColor,
+fillOpacity:.56
+};
+
+}
 
 if(
 selected &&
@@ -6156,7 +6551,6 @@ fillOpacity:.025
 };
 
 }
-
 
 function refreshProvinceStyles(){
 
@@ -6234,6 +6628,42 @@ state.filters.province
 
 layer.setStyle(
 provinceStyle(feature)
+);
+
+}
+else if(state.regionColors){
+
+const p =
+feature.properties || {};
+
+const thaiName =
+normalizeProvinceForRegion(
+clean(p.P_NAME_T)
+||
+name
+);
+
+const region =
+PROVINCE_REGION[thaiName]
+||
+getProvinceRegion(
+clean(p.P_NAME_E)
+);
+
+const regionColor =
+REGION_COLORS[region]
+||
+"#B8C5C0";
+
+layer.setStyle(
+{
+color:"#f39a36",
+weight:2.4,
+opacity:1,
+fill:true,
+fillColor:regionColor,
+fillOpacity:.68
+}
 );
 
 }
@@ -6518,7 +6948,7 @@ state.selectedType
 );
 
 updateForest(
-geographicFeatures
+currentFeatures
 );
 
 updateRiskUI(
@@ -7646,6 +8076,26 @@ provinceLayer
 
 };
 
+
+$("regionToggle")
+.onchange =
+event=>{
+
+state.regionColors =
+event.target.checked;
+
+$("regionLegend")
+.style.display =
+state.regionColors
+?
+"block"
+:
+"none";
+
+/* ระบายสีบน provinceLayer โดยตรง */
+refreshProvinceStyles();
+
+};
 
 $("districtToggle")
 .onchange =
@@ -9453,6 +9903,7 @@ false
 
 if(provinces){
 
+/* ใช้ provinceLayer ชั้นเดียวสำหรับทั้งเส้นขอบและสีตามภาค */
 provinceLayer =
 createProvinceLayer(
 provinces
@@ -9858,15 +10309,9 @@ showLoadError
 
 
                 /*
-                   ล้างการเลือกประเภท/ปี
-                   เพื่อให้กลับมาเห็นข้อมูลทั้งหมดจริง ๆ
+                   คงตัวกรองประเภท อปท. และปีถ่ายโอนไว้
+                   เพื่อให้กราฟป่าสงวนฯ สอดคล้องกับข้อมูลที่กำลังแสดงบนแผนที่
                 */
-
-                state.selectedType = "";
-
-                state.selectedYear = "";
-
-                state.riskLevel = "all";
 
 
                 /*
@@ -9896,12 +10341,24 @@ showLoadError
 
 
                 /*
-                   ซูมกลับประเทศไทย
+                   ซูมให้พอดีกับข้อมูลที่กำลังแสดง
                 */
 
-                fitFeatures(
-                    pointData.features
-                );
+                if(currentFeatures.length){
+
+                    fitFeatures(
+                        currentFeatures
+                    );
+
+                }
+                else{
+
+                    map.setView(
+                        [13.2,101],
+                        6
+                    );
+
+                }
 
 
 
@@ -10077,6 +10534,12 @@ showLoadError
         "พื้นที่ป่าสงวนฯ แยกตามจังหวัด":
             "Reserved Forest Area by Province",
 
+        "สรุปพื้นที่ป่าสงวนฯ ตามข้อมูลที่กำลังแสดงบนแผนที่ และเรียงจากพื้นที่มากไปน้อย":
+            "Reserved forest area based on the data currently shown on the map, sorted from largest to smallest",
+
+        "คลิกแท่งจังหวัดเพื่อเลือกจังหวัด และคลิกจังหวัดเดิมซ้ำเพื่อกลับมาแสดงทุกจังหวัด":
+            "Click a province bar to select it. Click the same province again to show all provinces.",
+
         "แสดงทุกจังหวัด": "Show All Provinces",
         "ไร่": "rai",
 
@@ -10105,6 +10568,7 @@ showLoadError
         "ชั้นข้อมูล": "Layers",
         "จุดที่ตั้ง อปท.": "Local Organization Locations",
         "ขอบเขตจังหวัด": "Province Boundaries",
+        "แบ่งสีตามภาค": "Color by Region",
         "ขอบเขตอำเภอ": "District Boundaries",
         "ขอบเขตตำบล": "Subdistrict Boundaries",
 
