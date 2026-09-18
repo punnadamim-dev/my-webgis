@@ -2,91 +2,42 @@
 <html lang="th">
 
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 
-<meta
-    http-equiv="Cache-Control"
-    content="no-cache, no-store, must-revalidate"
->
+<title>ไฟป่าท้องถิ่น | กรมส่งเสริมการปกครองท้องถิ่น</title>
 
-<meta
-    http-equiv="Pragma"
-    content="no-cache"
->
-
-<meta
-    http-equiv="Expires"
-    content="0"
->
-
-<title>
-    ไฟป่าท้องถิ่น | กรมส่งเสริมการปกครองท้องถิ่น
-</title>
-
-
-<!-- FONT -->
-<link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
->
-
-<link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
->
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
     href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap"
     rel="stylesheet"
 >
 
-
-<!-- ICON -->
 <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
 >
 
-
 <style>
 
-/* =========================================================
-   ROOT
-========================================================= */
-
 :root{
-
     --green:#0b684c;
     --green-dark:#07523d;
     --green-deep:#064635;
-
     --orange:#ff9b2c;
     --orange-hover:#ef8d1d;
-
-    --blue:#3478e5;
-
+    --blue:#0b684c;
     --text:#30433b;
     --muted:#718078;
-
     --line:#e2e8e5;
-
     --page:#f5f8f7;
-
     --white:#ffffff;
-
 }
-
-
-/* =========================================================
-   RESET
-========================================================= */
 
 *{
     box-sizing:border-box;
@@ -125,126 +76,68 @@ button{
 ========================================================= */
 
 .site-header{
-
     position:sticky;
-
     top:0;
-
     z-index:1000;
-
     width:100%;
-
     height:82px;
-
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
     padding:0 38px;
-
     background:var(--green);
-
-    box-shadow:
-        0 2px 10px rgba(0,0,0,.08);
-
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
 }
-
 
 .header-brand{
-
     display:flex;
-
     align-items:center;
-
     gap:13px;
-
     min-width:0;
-
 }
-
 
 .header-logo{
-
     width:60px;
-
     height:60px;
-
     flex:none;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     overflow:hidden;
-
     border-radius:50%;
-
 }
-
 
 .header-logo img{
-
     width:100%;
-
     height:100%;
-
     object-fit:contain;
-
 }
-
 
 .header-logo-fallback{
-
     display:none;
-
     width:100%;
-
     height:100%;
-
     align-items:center;
-
     justify-content:center;
-
     border-radius:50%;
-
     background:#fff;
-
     color:var(--green);
-
     font-size:28px;
-
 }
-
 
 .header-org-main{
-
     color:#fff;
-
     font-size:18px;
-
     line-height:1.25;
-
     font-weight:700;
-
     white-space:nowrap;
-
 }
 
-
 .header-org-sub{
-
     margin-top:3px;
-
-    color:rgba(255,255,255,.75);
-
-    font-size:8.5px;
-
+    color:rgba(255,255,255,.82);
+    font-size:10.5px;
     font-weight:400;
-
 }
 
 
@@ -253,124 +146,55 @@ button{
 ========================================================= */
 
 .header-right{
-
     display:flex;
-
     align-items:center;
-
     gap:18px;
-
 }
-
 
 .main-nav{
-
     display:flex;
-
     align-items:center;
-
     gap:30px;
-
 }
-
 
 .main-nav a{
-
     color:#fff;
-
     font-size:11px;
-
     font-weight:600;
-
     transition:.18s;
-
 }
-
 
 .main-nav a:hover{
     opacity:.72;
 }
 
 
-/* ปุ่มเข้าสู่แผนที่ด้านบน - ทำให้เล็กลง */
+/* ปุ่มเข้าสู่แผนที่ */
 
 .header-map-btn{
-
     height:46px;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     padding:0 22px;
 
     background:var(--orange);
+    color:#ffffff;
 
-    color:#fff;
+    border:0;
+    border-radius:19px;
 
     font-size:11px;
-
     font-weight:700;
 
+    box-shadow:0 8px 18px rgba(0,0,0,.12);
     transition:.18s;
-
 }
-
 
 .header-map-btn:hover{
     background:var(--orange-hover);
 }
 
-
-/* =========================================================
-   LANGUAGE - ทำให้เล็กลง
-========================================================= */
-
-.lang-switch{
-
-    display:flex;
-
-    padding:3px;
-
-    border-radius:19px;
-
-    background:#fff;
-
-}
-
-
-.lang-btn{
-
-    width:43px;
-
-    height:39px;
-
-    border:0;
-
-    border-radius:14px;
-
-    background:transparent;
-
-    color:#69756f;
-
-    font-size:10px;
-
-    font-weight:700;
-
-    cursor:pointer;
-
-}
-
-
-.lang-btn.active{
-
-    background:var(--green-dark);
-
-    color:#fff;
-
-}
 
 
 /* =========================================================
@@ -378,43 +202,30 @@ button{
 ========================================================= */
 
 .hero{
-
     position:relative;
-
     min-height:calc(100vh - 82px);
 
     display:flex;
-
     align-items:center;
-
     justify-content:center;
 
     overflow:hidden;
 
     background:
-
         linear-gradient(
             rgba(7,25,20,.23),
             rgba(5,20,16,.38)
         ),
-
         url("images/wildfire-bg.jpg");
 
     background-size:cover;
-
     background-position:center center;
-
     background-repeat:no-repeat;
-
 }
 
-
 .hero::after{
-
     content:"";
-
     position:absolute;
-
     inset:0;
 
     background:
@@ -426,29 +237,20 @@ button{
         );
 
     pointer-events:none;
-
 }
 
-
 .hero-content{
-
     position:relative;
-
     z-index:2;
 
     width:min(1100px,90%);
-
     margin:auto;
 
     text-align:center;
-
 }
 
-
 .hero-title{
-
     margin:0;
-
     color:#fff;
 
     font-size:clamp(
@@ -458,133 +260,92 @@ button{
     );
 
     line-height:1;
-
     font-weight:700;
-
     letter-spacing:-2px;
 
     text-shadow:
         0 5px 22px rgba(0,0,0,.20);
-
 }
 
-
 .hero-subtitle{
-
     max-width:1000px;
 
     margin:43px auto 0;
 
-    color:#fff;
+    color:#fffdf6;
 
-    font-size:19px;
-
-    line-height:1.65;
-
-    font-weight:500;
+    font-size:27px;
+    line-height:1.7;
+    font-weight:600;
 
     text-shadow:
-        0 2px 8px rgba(0,0,0,.25);
-
+        0 3px 12px rgba(0,0,0,.32);
 }
 
 
-/* ปุ่มกลางภาพ ลดลงเล็กน้อย */
+/* ปุ่มกลางภาพ */
 
 .hero-map-btn{
-
     min-width:215px;
-
     height:64px;
 
     display:inline-flex;
-
     align-items:center;
-
     justify-content:center;
 
     margin-top:42px;
-
     padding:0 34px;
 
     background:var(--orange);
-
     color:#fff;
 
-    font-size:15px;
+    border:0;
+    border-radius:999px;
 
+    font-size:15px;
     font-weight:700;
 
     box-shadow:
         0 12px 28px rgba(0,0,0,.16);
 
     transition:.18s;
-
 }
 
-
 .hero-map-btn:hover{
-
     background:var(--orange-hover);
-
     transform:translateY(-2px);
-
 }
 
 
 /* =========================================================
-   SERVICES
+   DATA
 ========================================================= */
 
 .services{
-
-    padding:
-        60px 6%
-        95px;
-
+    padding:60px 6% 95px;
     background:#f5f9f7;
-
 }
-
 
 .section-container{
-
     width:min(1500px,100%);
-
     margin:auto;
-
 }
-
 
 .services-title{
-
     margin:0 0 48px;
-
-    color:var(--blue);
-
+    color:#0b684c;
     font-size:25px;
-
     font-weight:600;
-
 }
-
 
 .services-grid{
-
     display:grid;
-
-    grid-template-columns:
-        repeat(3,minmax(0,1fr));
-
+    grid-template-columns:repeat(3,minmax(0,1fr));
     gap:42px;
-
 }
 
-
 .service-card{
-
     min-width:0;
-
 }
 
 
@@ -593,97 +354,61 @@ button{
 ========================================================= */
 
 .service-preview-link{
-
     display:block;
-
     position:relative;
-
 }
 
-
 .service-live-preview{
-
     position:relative;
 
     width:100%;
-
     height:275px;
 
     overflow:hidden;
 
     border:1px solid #d9e3df;
-
     border-radius:18px;
 
     background:#fff;
 
     box-shadow:
-        0 13px 35px
-        rgba(29,74,58,.08);
+        0 13px 35px rgba(29,74,58,.08);
 
     transition:
         transform .2s,
         box-shadow .2s;
-
 }
 
-
 .service-card:hover .service-live-preview{
-
     transform:translateY(-4px);
 
     box-shadow:
-        0 18px 42px
-        rgba(29,74,58,.13);
-
+        0 18px 42px rgba(29,74,58,.13);
 }
 
-
-/*
-   WebGIS จริงจะอยู่ข้างใน
-   แล้วถูกย่อให้เป็นเหมือนภาพตัวอย่าง
-*/
-
 .service-live-preview iframe{
-
     position:absolute;
 
     left:0;
-
     top:0;
 
     width:1440px;
-
     height:900px;
 
     border:0;
-
     background:#fff;
 
     transform:scale(.30);
-
     transform-origin:top left;
 
     pointer-events:none;
-
 }
 
-
-/*
-   แผ่นใสครอบ เพื่อให้คลิกการ์ดได้
-   โดย iframe ไม่แย่งเมาส์
-*/
-
 .service-preview-link::after{
-
     content:"";
-
     position:absolute;
-
     inset:0;
-
     z-index:5;
-
 }
 
 
@@ -692,20 +417,15 @@ button{
 ========================================================= */
 
 .service-title{
-
     margin-top:28px;
 
     color:#273e35;
 
     font-size:17px;
-
     font-weight:600;
-
 }
 
-
 .service-description{
-
     min-height:76px;
 
     margin-top:12px;
@@ -713,51 +433,36 @@ button{
     color:#74817b;
 
     font-size:10px;
-
     line-height:1.8;
-
 }
 
-
 .service-button{
-
     min-width:125px;
-
     height:42px;
 
     display:inline-flex;
-
     align-items:center;
-
     justify-content:center;
 
     gap:9px;
 
     margin-top:9px;
-
     padding:0 19px;
 
     border-radius:999px;
 
-    background:var(--blue);
-
-    color:#fff;
+    background:#0b684c;
+    color:#ffffff;
 
     font-size:10px;
-
     font-weight:600;
 
     transition:.18s;
-
 }
 
-
 .service-button:hover{
-
-    background:#256bda;
-
+    background:#07523d;
     transform:translateY(-2px);
-
 }
 
 
@@ -766,40 +471,25 @@ button{
 ========================================================= */
 
 .contact{
-
-    padding:
-        52px 6%
-        82px;
-
+    padding:52px 6% 82px;
     background:#fff;
-
 }
-
 
 .contact-container{
-
     width:min(1280px,100%);
-
     margin:auto;
-
 }
 
-
 .contact-heading{
-
     margin:0 0 34px;
 
     color:var(--green-dark);
 
     font-size:27px;
-
     font-weight:700;
-
 }
 
-
 .contact-layout{
-
     display:grid;
 
     grid-template-columns:
@@ -808,28 +498,20 @@ button{
     gap:18px;
 
     min-height:455px;
-
 }
 
-
 .contact-panel{
-
-    padding:
-        40px 42px;
+    padding:40px 42px;
 
     border-radius:26px;
 
     background:#fff;
 
     box-shadow:
-        0 12px 36px
-        rgba(27,68,53,.09);
-
+        0 12px 36px rgba(27,68,53,.09);
 }
 
-
 .contact-row{
-
     display:grid;
 
     grid-template-columns:
@@ -840,25 +522,18 @@ button{
     align-items:center;
 
     margin-bottom:32px;
-
 }
-
 
 .contact-row:last-child{
     margin-bottom:0;
 }
 
-
 .contact-icon{
-
     width:49px;
-
     height:49px;
 
     display:flex;
-
     align-items:center;
-
     justify-content:center;
 
     border:
@@ -869,46 +544,41 @@ button{
     color:var(--green);
 
     font-size:20px;
-
 }
 
-
 .contact-org{
-
     color:#263e34;
 
     font-size:14px;
-
     line-height:1.55;
-
     font-weight:600;
-
 }
 
-
 .contact-value{
-
     margin-top:6px;
 
     color:#42564d;
 
     font-size:12px;
-
     line-height:1.75;
-
 }
 
-
 .contact-simple{
-
     color:#354b41;
 
     font-size:13px;
-
     line-height:1.6;
-
 }
 
+.contact-phone-label{
+    margin-bottom:5px;
+
+    color:#263e34;
+
+    font-size:11px;
+    font-weight:600;
+    line-height:1.5;
+}
 
 .contact-simple a:hover{
     color:var(--green);
@@ -920,30 +590,22 @@ button{
 ========================================================= */
 
 .contact-map{
-
     overflow:hidden;
 
     background:#eef2f0;
 
     box-shadow:
-        0 12px 36px
-        rgba(27,68,53,.08);
-
+        0 12px 36px rgba(27,68,53,.08);
 }
 
-
 .contact-map iframe{
-
     width:100%;
-
     height:100%;
-
     min-height:455px;
 
     display:block;
 
     border:0;
-
 }
 
 
@@ -952,29 +614,18 @@ button{
 ========================================================= */
 
 .footer{
-
-    padding:
-        48px 6%
-        24px;
+    padding:48px 6% 24px;
 
     background:var(--green);
-
     color:#fff;
-
 }
-
 
 .footer-container{
-
     width:min(1280px,100%);
-
     margin:auto;
-
 }
 
-
 .footer-top{
-
     display:grid;
 
     grid-template-columns:
@@ -983,100 +634,69 @@ button{
     gap:80px;
 
     padding-bottom:34px;
-
 }
 
-
 .footer-title{
-
     margin-bottom:12px;
 
     color:#fff;
 
     font-size:14px;
-
     line-height:1.4;
-
     font-weight:600;
-
 }
 
-
 .footer-text{
-
     color:rgba(255,255,255,.86);
 
     font-size:10px;
-
     line-height:1.9;
-
 }
 
-
 .footer-contact-line{
-
     margin-top:4px;
 
     color:rgba(255,255,255,.88);
 
     font-size:10px;
-
     line-height:1.9;
-
 }
 
-
 .footer-social{
-
     display:flex;
 
     gap:12px;
 
     margin-top:12px;
-
 }
 
-
 .social-btn{
-
     width:42px;
-
     height:42px;
 
     display:flex;
-
     align-items:center;
-
     justify-content:center;
 
     border-radius:50%;
 
     background:rgba(255,255,255,.14);
-
     color:#fff;
 
     font-size:18px;
 
     transition:.18s;
-
 }
 
-
 .social-btn:hover{
-
     background:rgba(255,255,255,.25);
 
     transform:translateY(-2px);
-
 }
 
-
 .footer-bottom{
-
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
 
     gap:20px;
@@ -1089,9 +709,7 @@ button{
     color:rgba(255,255,255,.76);
 
     font-size:9px;
-
 }
-
 
 .footer-bottom-name{
     font-weight:500;
@@ -1115,318 +733,189 @@ button{
     .service-live-preview{
         height:245px;
     }
-
 }
 
 
 @media(max-width:900px){
 
     .site-header{
-
         height:76px;
-
         padding:0 18px;
-
     }
-
 
     .header-logo{
-
         width:51px;
-
         height:51px;
-
     }
-
 
     .header-org-main{
         font-size:14px;
     }
 
-
     .header-org-sub{
-        font-size:8px;
+        font-size:9.5px;
     }
-
 
     .header-map-btn{
         display:none;
     }
 
-
     .hero{
         min-height:calc(100vh - 76px);
     }
-
 
     .hero-title{
         font-size:68px;
     }
 
-
     .hero-subtitle{
-
         margin-top:30px;
-
-        font-size:15px;
-
+        font-size:19px;
     }
-
 
     .hero-map-btn{
-
         min-width:190px;
-
         height:58px;
-
         font-size:14px;
-
     }
-
 
     .services-grid{
         grid-template-columns:1fr;
     }
 
-
     .service-card{
-
         width:100%;
-
         max-width:650px;
-
         margin:auto;
-
     }
-
 
     .service-live-preview{
         height:290px;
     }
 
-
     .contact-layout{
         grid-template-columns:1fr;
     }
 
-
     .footer-top{
-
         grid-template-columns:1fr;
-
         gap:30px;
-
     }
-
 }
 
 
 @media(max-width:600px){
 
     .site-header{
-
         height:68px;
-
         padding:0 13px;
-
     }
-
 
     .header-logo{
-
         width:44px;
-
         height:44px;
-
     }
-
 
     .header-org-main{
         font-size:11px;
     }
 
-
     .header-org-sub{
-        display:none;
+        font-size:8px;
     }
-
-
-    .lang-btn{
-
-        width:38px;
-
-        height:34px;
-
-        border-radius:12px;
-
-        font-size:9px;
-
-    }
-
 
     .hero{
         min-height:calc(100vh - 68px);
     }
 
-
     .hero-title{
-
         font-size:46px;
-
         letter-spacing:-1px;
-
     }
-
 
     .hero-subtitle{
-
         margin-top:25px;
-
-        font-size:12px;
-
-        line-height:1.6;
-
+        font-size:15px;
+        line-height:1.65;
     }
-
 
     .hero-map-btn{
-
         min-width:165px;
-
         height:50px;
-
         margin-top:30px;
-
         font-size:12px;
-
     }
 
-
     .services{
-
         padding:
             45px 18px
             65px;
-
     }
-
 
     .services-title{
-
         margin-bottom:35px;
-
         font-size:21px;
-
     }
-
 
     .service-live-preview{
         height:210px;
     }
 
-
     .service-live-preview iframe{
-
         transform:scale(.24);
-
     }
 
-
     .contact{
-
         padding:
             42px 17px
             55px;
-
     }
-
 
     .contact-heading{
         font-size:21px;
     }
 
-
     .contact-panel{
-
-        padding:
-            29px 23px;
-
+        padding:29px 23px;
     }
 
-
     .contact-row{
-
         grid-template-columns:
             46px 1fr;
 
         gap:15px;
-
     }
-
 
     .contact-icon{
-
         width:44px;
-
         height:44px;
-
     }
-
 
     .contact-org{
         font-size:12px;
     }
-
 
     .contact-value,
     .contact-simple{
         font-size:10px;
     }
 
-
     .contact-map iframe{
         min-height:340px;
     }
 
-
     .footer{
-
         padding:
             38px 19px
             20px;
-
     }
-
 
     .footer-bottom{
-
         flex-direction:column;
-
         align-items:flex-start;
-
     }
-
-}
-/* =========================================================
-   เปลี่ยนสีฟ้าในส่วนบริการข้อมูลเป็นสีเขียว
-========================================================= */
-
-:root{
-    --blue:#0b684c;
 }
 
-.services-title{
-    color:#0b684c;
-}
-
-.service-button{
-    background:#0b684c;
-    color:#ffffff;
-}
-
-.service-button:hover{
-    background:#07523d;
-}
 </style>
 </head>
 
@@ -1440,15 +929,12 @@ button{
 
 <header class="site-header">
 
-
     <a
         href="#home"
         class="header-brand"
     >
 
-
         <div class="header-logo">
-
 
             <img
                 src="images/logodla.png"
@@ -1459,17 +945,14 @@ button{
                 "
             >
 
-
             <div class="header-logo-fallback">
                 <i class="bi bi-tree-fill"></i>
             </div>
-
 
         </div>
 
 
         <div>
-
 
             <div
                 id="organizationMain"
@@ -1478,7 +961,6 @@ button{
                 กรมส่งเสริมการปกครองท้องถิ่น
             </div>
 
-
             <div
                 id="organizationSub"
                 class="header-org-sub"
@@ -1486,19 +968,14 @@ button{
                 กองป้องกันและบรรเทาสาธารณภัยท้องถิ่น
             </div>
 
-
         </div>
-
 
     </a>
 
 
-
     <div class="header-right">
 
-
         <nav class="main-nav">
-
 
             <a
                 id="navHome"
@@ -1507,14 +984,12 @@ button{
                 หน้าหลัก
             </a>
 
-
             <a
                 id="navServices"
                 href="#services"
             >
-                บริการ
+                ข้อมูล
             </a>
-
 
             <a
                 id="navContact"
@@ -1523,9 +998,7 @@ button{
                 ติดต่อเรา
             </a>
 
-
         </nav>
-
 
 
         <a
@@ -1536,34 +1009,7 @@ button{
             เข้าสู่แผนที่
         </a>
 
-
-
-        <div class="lang-switch">
-
-
-            <button
-                class="lang-btn active"
-                data-lang="th"
-                type="button"
-            >
-                TH
-            </button>
-
-
-            <button
-                class="lang-btn"
-                data-lang="en"
-                type="button"
-            >
-                EN
-            </button>
-
-
-        </div>
-
-
     </div>
-
 
 </header>
 
@@ -1578,9 +1024,7 @@ button{
     class="hero"
 >
 
-
     <div class="hero-content">
-
 
         <h1
             id="heroTitle"
@@ -1606,16 +1050,14 @@ button{
             เข้าสู่แผนที่
         </a>
 
-
     </div>
-
 
 </section>
 
 
 
 <!-- =========================================================
-     SERVICES
+     DATA
 ========================================================= -->
 
 <section
@@ -1623,37 +1065,29 @@ button{
     class="services"
 >
 
-
     <div class="section-container">
-
 
         <h2
             id="servicesTitle"
             class="services-title"
         >
-            บริการข้อมูล
+            ข้อมูล
         </h2>
-
 
 
         <div class="services-grid">
 
 
-            <!-- =================================================
-                 1. ข้อมูลที่แสดง
-            ================================================== -->
+            <!-- ข้อมูลที่แสดง -->
 
             <article class="service-card">
-
 
                 <a
                     href="map.html?view=overview"
                     class="service-preview-link"
                 >
 
-
                     <div class="service-live-preview">
-
 
                         <iframe
                             src="map.html?view=overview"
@@ -1662,12 +1096,9 @@ button{
                             title="ตัวอย่างข้อมูลที่แสดง"
                         ></iframe>
 
-
                     </div>
 
-
                 </a>
-
 
 
                 <div
@@ -1693,35 +1124,27 @@ button{
                     href="map.html?view=overview"
                     class="service-button"
                 >
-
                     <i class="bi bi-arrow-right"></i>
 
                     <span>
                         ดูข้อมูล
                     </span>
-
                 </a>
-
 
             </article>
 
 
 
-            <!-- =================================================
-                 2. พื้นที่เสี่ยง
-            ================================================== -->
+            <!-- พื้นที่เสี่ยง -->
 
             <article class="service-card">
-
 
                 <a
                     href="map.html?view=risk"
                     class="service-preview-link"
                 >
 
-
                     <div class="service-live-preview">
-
 
                         <iframe
                             src="map.html?view=risk"
@@ -1730,12 +1153,9 @@ button{
                             title="ตัวอย่างพื้นที่เสี่ยง"
                         ></iframe>
 
-
                     </div>
 
-
                 </a>
-
 
 
                 <div
@@ -1762,35 +1182,27 @@ button{
                     href="map.html?view=risk"
                     class="service-button"
                 >
-
                     <i class="bi bi-arrow-right"></i>
 
                     <span>
                         ดูข้อมูล
                     </span>
-
                 </a>
-
 
             </article>
 
 
 
-            <!-- =================================================
-                 3. DASHBOARD
-            ================================================== -->
+            <!-- DASHBOARD -->
 
             <article class="service-card">
-
 
                 <a
                     href="map.html?view=dashboard"
                     class="service-preview-link"
                 >
 
-
                     <div class="service-live-preview">
-
 
                         <iframe
                             src="map.html?view=dashboard"
@@ -1799,12 +1211,9 @@ button{
                             title="ตัวอย่าง Dashboard"
                         ></iframe>
 
-
                     </div>
 
-
                 </a>
-
 
 
                 <div
@@ -1830,24 +1239,18 @@ button{
                     href="map.html?view=dashboard"
                     class="service-button"
                 >
-
                     <i class="bi bi-arrow-right"></i>
 
                     <span>
                         ดู Dashboard
                     </span>
-
                 </a>
-
 
             </article>
 
-
         </div>
 
-
     </div>
-
 
 </section>
 
@@ -1862,9 +1265,7 @@ button{
     class="contact"
 >
 
-
     <div class="contact-container">
-
 
         <h2
             id="contactHeading"
@@ -1872,7 +1273,6 @@ button{
         >
             ช่องทางติดต่อเรา
         </h2>
-
 
 
         <div class="contact-layout">
@@ -1885,14 +1285,12 @@ button{
 
                 <div class="contact-row">
 
-
                     <div class="contact-icon">
                         <i class="bi bi-geo-alt-fill"></i>
                     </div>
 
 
                     <div>
-
 
                         <div
                             id="contactOrganization"
@@ -1909,9 +1307,7 @@ button{
                             ถนนนครราชสีมา แขวงดุสิต เขตดุสิต กรุงเทพมหานคร 10300
                         </div>
 
-
                     </div>
-
 
                 </div>
 
@@ -1921,7 +1317,6 @@ button{
 
                 <div class="contact-row">
 
-
                     <div class="contact-icon">
                         <i class="bi bi-telephone-fill"></i>
                     </div>
@@ -1929,12 +1324,15 @@ button{
 
                     <div class="contact-simple">
 
+                        <div class="contact-phone-label">
+                            ติดต่อกองป้องกันและบรรเทาสาธารณภัย
+                        </div>
+
                         <a href="tel:022419000">
                             0 2241 9000
                         </a>
 
                     </div>
-
 
                 </div>
 
@@ -1943,7 +1341,6 @@ button{
                 <!-- EMAIL -->
 
                 <div class="contact-row">
-
 
                     <div class="contact-icon">
                         <i class="bi bi-envelope-fill"></i>
@@ -1958,9 +1355,7 @@ button{
 
                     </div>
 
-
                 </div>
-
 
             </div>
 
@@ -1970,7 +1365,6 @@ button{
 
             <div class="contact-map">
 
-
                 <iframe
                     title="กรมส่งเสริมการปกครองท้องถิ่น"
                     loading="lazy"
@@ -1979,15 +1373,11 @@ button{
                     src="https://www.google.com/maps?q=Department%20of%20Local%20Administration%20Bangkok&output=embed"
                 ></iframe>
 
-
             </div>
-
 
         </div>
 
-
     </div>
-
 
 </section>
 
@@ -1999,9 +1389,7 @@ button{
 
 <footer class="footer">
 
-
     <div class="footer-container">
-
 
         <div class="footer-top">
 
@@ -2009,7 +1397,6 @@ button{
             <!-- ORGANIZATION -->
 
             <div>
-
 
                 <div
                     id="footerOrganization"
@@ -2034,7 +1421,6 @@ button{
                     ระบบสารสนเทศภูมิศาสตร์ด้านภารกิจไฟป่าท้องถิ่น
                 </div>
 
-
             </div>
 
 
@@ -2042,7 +1428,6 @@ button{
             <!-- CONTACT -->
 
             <div>
-
 
                 <div
                     id="footerContactTitle"
@@ -2062,7 +1447,6 @@ button{
 
                 </div>
 
-
             </div>
 
 
@@ -2070,7 +1454,6 @@ button{
             <!-- FOLLOW -->
 
             <div>
-
 
                 <div
                     id="footerFollowTitle"
@@ -2081,7 +1464,6 @@ button{
 
 
                 <div class="footer-social">
-
 
                     <a
                         class="social-btn"
@@ -2104,19 +1486,14 @@ button{
                         <i class="bi bi-globe2"></i>
                     </a>
 
-
                 </div>
 
-
             </div>
-
 
         </div>
 
 
-
         <div class="footer-bottom">
-
 
             <div
                 id="footerName"
@@ -2125,472 +1502,15 @@ button{
                 กรมส่งเสริมการปกครองท้องถิ่น
             </div>
 
-
             <div>
                 Local Wildfire WebGIS
             </div>
 
-
         </div>
-
 
     </div>
 
-
 </footer>
-
-
-
-<script>
-
-/* =========================================================
-   LANGUAGE
-========================================================= */
-
-const TEXT = {
-
-
-    th:{
-
-        organizationMain:
-            "กรมส่งเสริมการปกครองท้องถิ่น",
-
-        organizationSub:
-            "กองป้องกันและบรรเทาสาธารณภัยท้องถิ่น",
-
-        navHome:
-            "หน้าหลัก",
-
-        navServices:
-            "บริการ",
-
-        navContact:
-            "ติดต่อเรา",
-
-        headerMapBtn:
-            "เข้าสู่แผนที่",
-
-        heroTitle:
-            "ไฟป่าท้องถิ่น",
-
-        heroSubtitle:
-            "แผนที่แสดงจุดที่ตั้งขององค์กรปกครองส่วนท้องถิ่นที่ได้รับการถ่ายโอนภารกิจไฟป่า",
-
-        heroMapBtn:
-            "เข้าสู่แผนที่",
-
-        servicesTitle:
-            "บริการข้อมูล",
-
-        overviewTitle:
-            "ข้อมูลที่แสดง",
-
-        overviewText:
-            "สำรวจประเภทองค์กรปกครองส่วนท้องถิ่น จำนวนองค์กรปกครองส่วนท้องถิ่นที่ได้รับการถ่ายโอนภารกิจแยกตามรายปี และพื้นที่ป่าสงวนฯ แยกตามจังหวัด",
-
-        overviewBtn:
-            "ดูข้อมูล",
-
-        riskTitle:
-            "พื้นที่เสี่ยง",
-
-        riskText:
-            "ค้นหาองค์กรปกครองส่วนท้องถิ่น ตรวจสอบค่าพื้นที่เสี่ยง และดูจำนวนองค์กรปกครองส่วนท้องถิ่นแยกตามระดับความเสี่ยงบนแผนที่",
-
-        riskBtn:
-            "ดูข้อมูล",
-
-        dashboardTitle:
-            "Dashboard",
-
-        dashboardText:
-            "ดูภาพรวมข้อมูลจำนวนองค์กรปกครองส่วนท้องถิ่น จำนวนจังหวัด พื้นที่ป่าสงวนฯ ระดับความเสี่ยง และกราฟสรุปข้อมูล",
-
-        dashboardBtn:
-            "ดู Dashboard",
-
-        contactHeading:
-            "ช่องทางติดต่อเรา",
-
-        contactOrganization:
-            "กรมส่งเสริมการปกครองท้องถิ่น",
-
-        contactAddress:
-            "ถนนนครราชสีมา แขวงดุสิต เขตดุสิต กรุงเทพมหานคร 10300",
-
-        footerOrganization:
-            "กรมส่งเสริมการปกครองท้องถิ่น",
-
-        footerAddress:
-            "กองป้องกันและบรรเทาสาธารณภัยท้องถิ่น\nถนนนครราชสีมา แขวงดุสิต เขตดุสิต กรุงเทพมหานคร 10300\nระบบสารสนเทศภูมิศาสตร์ด้านภารกิจไฟป่าท้องถิ่น",
-
-        footerContactTitle:
-            "ติดต่อเรา",
-
-        footerFollowTitle:
-            "ติดตามเรา",
-
-        footerName:
-            "กรมส่งเสริมการปกครองท้องถิ่น"
-
-    },
-
-
-
-    en:{
-
-        organizationMain:
-            "Department of Local Administration",
-
-        organizationSub:
-            "Local Disaster Prevention and Mitigation Division",
-
-        navHome:
-            "Home",
-
-        navServices:
-            "Services",
-
-        navContact:
-            "Contact",
-
-        headerMapBtn:
-            "Open Map",
-
-        heroTitle:
-            "Local Wildfire",
-
-        heroSubtitle:
-            "Map showing the locations of local administrative organizations that have received transferred wildfire responsibilities",
-
-        heroMapBtn:
-            "Open Map",
-
-        servicesTitle:
-            "Data Services",
-
-        overviewTitle:
-            "Displayed Data",
-
-        overviewText:
-            "Explore local administrative organization types, annual mission transfer data and reserved forest areas by province.",
-
-        overviewBtn:
-            "View Data",
-
-        riskTitle:
-            "Risk Areas",
-
-        riskText:
-            "Search local administrative organizations, check wildfire risk values and view organizations by risk level on the map.",
-
-        riskBtn:
-            "View Risk Data",
-
-        dashboardTitle:
-            "Dashboard",
-
-        dashboardText:
-            "View overall local administrative organization statistics, provinces, reserved forest areas, risk levels and summary charts.",
-
-        dashboardBtn:
-            "Open Dashboard",
-
-        contactHeading:
-            "Contact Us",
-
-        contactOrganization:
-            "Department of Local Administration",
-
-        contactAddress:
-            "Nakhon Ratchasima Road, Dusit, Bangkok 10300, Thailand",
-
-        footerOrganization:
-            "Department of Local Administration",
-
-        footerAddress:
-            "Local Disaster Prevention and Mitigation Division\nNakhon Ratchasima Road, Dusit, Bangkok 10300, Thailand\nLocal Wildfire Geographic Information System",
-
-        footerContactTitle:
-            "Contact",
-
-        footerFollowTitle:
-            "Follow Us",
-
-        footerName:
-            "Department of Local Administration"
-
-    }
-
-};
-
-
-
-/* =========================================================
-   HELPERS
-========================================================= */
-
-function setText(id,value){
-
-    const element =
-        document.getElementById(id);
-
-    if(element){
-        element.textContent = value;
-    }
-
-}
-
-
-function setButtonSpan(id,value){
-
-    const element =
-        document.getElementById(id);
-
-    if(!element){
-        return;
-    }
-
-    const span =
-        element.querySelector("span");
-
-    if(span){
-        span.textContent = value;
-    }
-    else{
-        element.textContent = value;
-    }
-
-}
-
-
-
-/* =========================================================
-   APPLY LANGUAGE
-========================================================= */
-
-function applyLanguage(lang){
-
-    const data =
-        TEXT[lang] || TEXT.th;
-
-
-    document.documentElement.lang =
-        lang;
-
-
-    localStorage.setItem(
-        "siteLang",
-        lang
-    );
-
-
-    document
-    .querySelectorAll(".lang-btn")
-    .forEach(button=>{
-
-        button.classList.toggle(
-            "active",
-            button.dataset.lang === lang
-        );
-
-    });
-
-
-    setText(
-        "organizationMain",
-        data.organizationMain
-    );
-
-    setText(
-        "organizationSub",
-        data.organizationSub
-    );
-
-    setText(
-        "navHome",
-        data.navHome
-    );
-
-    setText(
-        "navServices",
-        data.navServices
-    );
-
-    setText(
-        "navContact",
-        data.navContact
-    );
-
-    setText(
-        "headerMapBtn",
-        data.headerMapBtn
-    );
-
-    setText(
-        "heroTitle",
-        data.heroTitle
-    );
-
-    setText(
-        "heroSubtitle",
-        data.heroSubtitle
-    );
-
-    setText(
-        "heroMapBtn",
-        data.heroMapBtn
-    );
-
-    setText(
-        "servicesTitle",
-        data.servicesTitle
-    );
-
-    setText(
-        "overviewTitle",
-        data.overviewTitle
-    );
-
-    setText(
-        "overviewText",
-        data.overviewText
-    );
-
-    setButtonSpan(
-        "overviewBtn",
-        data.overviewBtn
-    );
-
-    setText(
-        "riskTitle",
-        data.riskTitle
-    );
-
-    setText(
-        "riskText",
-        data.riskText
-    );
-
-    setButtonSpan(
-        "riskBtn",
-        data.riskBtn
-    );
-
-    setText(
-        "dashboardTitle",
-        data.dashboardTitle
-    );
-
-    setText(
-        "dashboardText",
-        data.dashboardText
-    );
-
-    setButtonSpan(
-        "dashboardBtn",
-        data.dashboardBtn
-    );
-
-    setText(
-        "contactHeading",
-        data.contactHeading
-    );
-
-    setText(
-        "contactOrganization",
-        data.contactOrganization
-    );
-
-    setText(
-        "contactAddress",
-        data.contactAddress
-    );
-
-    setText(
-        "footerOrganization",
-        data.footerOrganization
-    );
-
-
-    const footerAddress =
-        document.getElementById(
-            "footerAddress"
-        );
-
-
-    if(footerAddress){
-
-        footerAddress.innerHTML =
-            data.footerAddress
-            .replace(
-                /\n/g,
-                "<br>"
-            );
-
-    }
-
-
-    setText(
-        "footerContactTitle",
-        data.footerContactTitle
-    );
-
-    setText(
-        "footerFollowTitle",
-        data.footerFollowTitle
-    );
-
-    setText(
-        "footerName",
-        data.footerName
-    );
-
-}
-
-
-
-/* =========================================================
-   LANGUAGE BUTTON
-========================================================= */
-
-document
-.querySelectorAll(".lang-btn")
-.forEach(button=>{
-
-    button.addEventListener(
-        "click",
-        ()=>{
-
-            applyLanguage(
-                button.dataset.lang
-            );
-
-        }
-    );
-
-});
-
-
-
-/* =========================================================
-   START
-========================================================= */
-
-const initialLanguage =
-    localStorage.getItem(
-        "siteLang"
-    )
-    ||
-    "th";
-
-
-applyLanguage(
-    initialLanguage
-);
-
-</script>
-
 
 </body>
 </html>
