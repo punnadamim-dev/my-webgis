@@ -28,6 +28,16 @@
 --risk-none:#67bea0;
 --risk-unknown:#cfd8d4;
 --shadow:0 16px 45px rgba(11,54,40,.16);
+
+/* Dashboard luxury palette */
+--lux-sage:#B6C7AA;
+--lux-cream:#F6E6CB;
+--lux-sand:#E7D4B5;
+--lux-taupe:#A0937D;
+--lux-caramel:#B99470;
+--lux-ivory:#FEFAE0;
+--lux-olive:#A9B388;
+--lux-deep:#5F6F52;
 }
 
 *{box-sizing:border-box}
@@ -284,11 +294,68 @@ display:flex;
 
 /* TYPE */
 .type-bar-wrap{
+position:relative;
 height:235px;
 padding:8px 6px 4px;
 border-radius:24px;
 background:linear-gradient(145deg,#fffafd,#f5fbf8);
 }
+
+.type-total-badge{
+position:absolute;
+z-index:4;
+right:13px;
+top:11px;
+display:flex;
+align-items:baseline;
+gap:5px;
+padding:6px 10px;
+border:1px solid #d9e7e0;
+border-radius:999px;
+background:rgba(255,255,255,.92);
+box-shadow:0 5px 14px rgba(27,72,55,.07);
+color:#68766f;
+font-size:7.5px;
+}
+
+.type-total-badge strong{
+color:#075b43;
+font-size:13px;
+font-weight:700;
+}
+
+.attribute-open-btn{
+width:100%;
+height:40px;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:7px;
+margin-top:11px;
+border:1px solid #cfe2d9;
+border-radius:13px;
+background:#edf7f2;
+color:#0b6248;
+font-size:8.5px;
+font-weight:700;
+transition:.16s;
+}
+
+.attribute-open-btn:hover{
+background:#e4f2eb;
+transform:translateY(-1px);
+}
+
+.attribute-open-btn .attribute-open-count{
+margin-left:3px;
+padding:3px 7px;
+border-radius:999px;
+background:#fff;
+color:#66746d;
+font-size:7px;
+font-weight:600;
+}
+
 
 .type-filter-buttons{
 display:grid;
@@ -389,6 +456,134 @@ font-size:10px;
 .type-visibility-note strong{
 color:#456759;
 font-weight:600;
+}
+
+
+/* FILTERED FEATURE LIST */
+.selection-list-panel{display:none;margin-top:14px;padding:12px;border:1px solid #e1e9e5;border-radius:18px;background:#fbfdfc}
+.selection-list-panel.show{display:block}
+.selection-list-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.selection-list-title{color:#33473e;font-size:10.5px;line-height:1.45;font-weight:700}
+.selection-list-count{flex:none;padding:4px 8px;border-radius:999px;background:#eaf4ef;color:#0b684c;font-size:7.5px;font-weight:700;white-space:nowrap}
+.selection-list-search{height:39px;display:grid;grid-template-columns:22px 1fr;align-items:center;gap:5px;margin-top:10px;padding:0 10px;border:1px solid #dce7e2;border-radius:12px;background:#fff}
+.selection-list-search i{color:#819089;font-size:11px}
+.selection-list-search input{width:100%;height:36px;border:0;outline:0;background:transparent;color:#405149;font-size:9px}
+.selection-list-status{min-height:19px;padding:6px 2px 1px;color:#8c9993;font-size:7.5px}
+.selection-list-items{display:grid;gap:6px;max-height:330px;overflow:auto;padding-right:2px}
+.selection-list-items::-webkit-scrollbar{width:5px}
+.selection-list-items::-webkit-scrollbar-thumb{background:#cdd8d3;border-radius:999px}
+.selection-list-item{width:100%;min-height:48px;display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:9px;align-items:center;padding:8px 9px;border:1px solid #e7eeea;border-radius:13px;background:#fff;color:#42544c;text-align:left;transition:.15s}
+.selection-list-item:hover{border-color:#bdd8cc;background:#f4faf7;transform:translateY(-1px)}
+.selection-list-dot{width:9px;height:9px;border-radius:50%}
+.selection-list-main{min-width:0}
+.selection-list-name{display:block;overflow:hidden;color:#31463d;font-size:8.5px;line-height:1.45;font-weight:600;white-space:nowrap;text-overflow:ellipsis}
+.selection-list-place{display:block;overflow:hidden;margin-top:2px;color:#8a9891;font-size:7px;line-height:1.45;white-space:nowrap;text-overflow:ellipsis}
+.selection-list-meta{max-width:72px;padding:4px 6px;border-radius:8px;background:#f2f6f4;color:#607169;font-size:6.8px;font-weight:600;text-align:center;white-space:nowrap}
+.selection-list-empty{padding:18px 8px;border:1px dashed #dbe5e0;border-radius:12px;color:#94a099;font-size:8px;text-align:center}
+.selection-list-pagination{display:grid;grid-template-columns:34px minmax(0,1fr) 34px;gap:7px;align-items:center;margin-top:10px}
+.selection-list-page-btn{width:34px;height:30px;border:1px solid #dce6e1;border-radius:9px;background:#fff;color:#566961}
+.selection-list-page-btn:disabled{opacity:.35;cursor:default}
+.selection-list-page-info{text-align:center;color:#73817b;font-size:7.5px;line-height:1.45}
+
+/* ATTRIBUTE TABLE WINDOW */
+.attribute-modal{
+position:fixed;
+z-index:7200;
+inset:0;
+display:none;
+background:rgba(20,38,31,.38);
+backdrop-filter:blur(2px);
+}
+
+.attribute-modal.show{display:block}
+
+.attribute-window{
+position:absolute;
+left:3vw;
+right:3vw;
+top:4vh;
+bottom:4vh;
+dis:flex;
+display:flex;
+flex-direction:column;
+overflow:hidden;
+border:1px solid #dce6e1;
+border-radius:22px;
+background:#f8faf9;
+box-shadow:0 30px 80px rgba(12,52,38,.24);
+}
+
+.attribute-head{
+flex:none;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:16px;
+padding:15px 18px;
+border-bottom:1px solid #e1e8e4;
+background:linear-gradient(140deg,#07523d,#0b684c);
+color:#fff;
+}
+
+.attribute-head-left{min-width:0}
+.attribute-title{font-size:16px;font-weight:700;line-height:1.35}
+.attribute-sub{margin-top:3px;color:rgba(255,255,255,.78);font-size:8.5px}
+.attribute-close{width:38px;height:38px;flex:none;border:1px solid rgba(255,255,255,.16);border-radius:12px;background:rgba(255,255,255,.12);color:#fff;font-size:17px}
+
+.attribute-toolbar{
+flex:none;
+display:grid;
+grid-template-columns:minmax(260px,1fr) auto;
+gap:12px;
+align-items:center;
+padding:12px 16px;
+border-bottom:1px solid #e4ebe7;
+background:#fff;
+}
+
+.attribute-search{
+height:42px;
+display:grid;
+grid-template-columns:24px 1fr;
+align-items:center;
+gap:5px;
+padding:0 11px;
+border:1px solid #d8e5df;
+border-radius:12px;
+background:#fbfdfc;
+}
+.attribute-search i{color:#75867e}
+.attribute-search input{width:100%;height:38px;border:0;outline:0;background:transparent;color:#3f5048;font-size:9.5px}
+.attribute-count-pill{padding:7px 11px;border-radius:999px;background:#edf7f2;color:#0b6248;font-size:8px;font-weight:700;white-space:nowrap}
+
+.attribute-table-scroll{flex:1;min-height:0;overflow:auto;padding:0 10px 8px;background:#f8faf9}
+.attribute-table{width:100%;border-collapse:separate;border-spacing:0;min-width:980px;background:#fff;font-size:8px}
+.attribute-table thead th{position:sticky;top:0;z-index:2;padding:10px 9px;border-bottom:1px solid #dfe7e3;background:#eef5f1;color:#45584f;text-align:left;font-weight:700;white-space:nowrap}
+.attribute-table tbody td{padding:9px;border-bottom:1px solid #edf1ef;color:#53635c;vertical-align:middle}
+.attribute-table tbody tr:hover td{background:#f7fbf9}
+.attribute-table .attr-index{width:44px;text-align:center;color:#8a9791}
+.attribute-table .attr-name{min-width:220px;color:#2f473d;font-weight:600}
+.attribute-table .attr-action{width:84px;text-align:center}
+.attr-map-btn{height:28px;padding:0 9px;border:1px solid #cfe1d8;border-radius:9px;background:#eef7f2;color:#0b6248;font-size:7.5px;font-weight:600}
+
+.attribute-footer{
+flex:none;
+display:grid;
+grid-template-columns:38px minmax(180px,1fr) 38px;
+gap:10px;
+align-items:center;
+padding:10px 16px 13px;
+border-top:1px solid #e1e8e4;
+background:#fff;
+}
+.attribute-page-btn{width:38px;height:34px;border:1px solid #d9e4df;border-radius:10px;background:#fff;color:#5d6d65}
+.attribute-page-btn:disabled{opacity:.35;cursor:default}
+.attribute-page-info{text-align:center;color:#6f7d76;font-size:8px;line-height:1.45}
+
+@media(max-width:820px){
+.attribute-window{left:2vw;right:2vw;top:2vh;bottom:2vh}
+.attribute-toolbar{grid-template-columns:1fr}
+.attribute-count-pill{justify-self:start}
 }
 
 /* YEAR + FOREST */
@@ -1047,30 +1242,6 @@ display:flex;
 gap:8px;
 }
 
-.language-box{
-display:flex;
-padding:4px;
-border-radius:15px;
-background:#fff;
-box-shadow:0 8px 25px rgba(0,0,0,.13);
-}
-
-.language-btn{
-width:44px;
-height:38px;
-border:0;
-border-radius:10px;
-background:transparent;
-color:#68756f;
-font-size:12px;
-font-weight:700;
-}
-
-.language-btn.active{
-background:var(--green-dark);
-color:#fff;
-}
-
 .home-button{
 width:47px;
 height:47px;
@@ -1159,6 +1330,28 @@ margin-top:9px;
 padding:10px 13px;
 border:1px solid #e0e6e3;
 border-radius:16px;
+}
+
+.layer-group{
+margin-top:9px;
+border:1px solid #e0e6e3;
+border-radius:16px;
+overflow:hidden;
+background:#fff;
+}
+
+.layer-group .layer-row{
+margin-top:0;
+border:0;
+border-radius:0;
+}
+
+.layer-group .layer-row + .layer-row{
+border-top:1px solid #e8eeeb;
+}
+
+.layer-group #regionLegend{
+margin:0 12px 12px !important;
 }
 
 .layer-left{
@@ -1450,6 +1643,50 @@ font-size:10px;
 line-height:1.55;
 }
 
+/* ADMINISTRATIVE BOUNDARY LABELS */
+.boundary-label-marker{
+background:transparent !important;
+border:0 !important;
+}
+
+.boundary-map-label{
+display:inline-block;
+padding:2px 5px;
+border:1px solid rgba(255,255,255,.88);
+border-radius:5px;
+background:rgba(255,255,255,.84);
+box-shadow:0 1px 4px rgba(40,55,49,.12);
+color:#46514c;
+font-family:"Prompt",sans-serif;
+font-size:9px;
+font-weight:500;
+line-height:1.25;
+white-space:nowrap;
+pointer-events:none;
+}
+
+.boundary-map-label.district{
+border-color:rgba(15,118,110,.25);
+color:#075f59;
+}
+
+.boundary-map-label.subdistrict{
+border-color:rgba(190,18,60,.22);
+color:#9f1239;
+}
+
+.leaflet-tooltip.boundary-hover-tooltip{
+padding:5px 8px;
+border:1px solid rgba(207,221,215,.95);
+border-radius:7px;
+background:rgba(255,255,255,.96);
+box-shadow:0 4px 12px rgba(32,58,47,.14);
+color:#33453d;
+font-family:"Prompt",sans-serif;
+font-size:10px;
+font-weight:600;
+}
+
 /* LOADING */
 .loading{
 position:fixed;
@@ -1624,7 +1861,7 @@ background:#aeb9b4;
 /* KPI */
 .dashboard-kpis{
 display:grid;
-grid-template-columns:repeat(4,minmax(0,1fr));
+grid-template-columns:repeat(3,minmax(0,1fr));
 gap:12px;
 }
 
@@ -1633,21 +1870,25 @@ min-height:122px;
 position:relative;
 overflow:hidden;
 padding:17px 16px;
-border:1px solid #e6ebe8;
+border:1px solid rgba(95,111,82,.13);
 border-radius:20px;
-background:#fff;
-box-shadow:0 6px 19px rgba(31,71,56,.045);
+background:var(--lux-ivory);
+box-shadow:0 8px 22px rgba(95,111,82,.08);
 }
+
+.dashboard-kpi:nth-child(1){background:linear-gradient(145deg,#FEFAE0,#F6E6CB)}
+.dashboard-kpi:nth-child(2){background:linear-gradient(145deg,#E7D4B5,#F6E6CB)}
+.dashboard-kpi:nth-child(3){background:linear-gradient(145deg,#B6C7AA,#D9E1CE)}
 
 .dashboard-kpi::after{
 content:"";
 position:absolute;
-width:70px;
-height:70px;
-right:-26px;
-top:-27px;
+width:76px;
+height:76px;
+right:-27px;
+top:-29px;
 border-radius:50%;
-background:#f0f8f4;
+background:rgba(255,255,255,.34);
 }
 
 .dashboard-kpi-icon{
@@ -1658,15 +1899,15 @@ align-items:center;
 justify-content:center;
 margin-bottom:9px;
 border-radius:11px;
-background:#eff8f4;
-color:#0b7554;
+background:rgba(255,255,255,.58);
+color:var(--lux-deep);
 font-size:15px;
 }
 
 .dashboard-kpi-value{
 position:relative;
 z-index:1;
-color:#096347;
+color:var(--lux-deep);
 font-size:23px;
 line-height:1.15;
 font-weight:700;
@@ -1683,7 +1924,7 @@ font-weight:600;
 position:relative;
 z-index:1;
 margin-top:7px;
-color:#89958f;
+color:#6f7569;
 font-size:8.5px;
 line-height:1.45;
 }
@@ -1710,14 +1951,22 @@ margin-top:12px;
 .dashboard-card{
 min-width:0;
 padding:15px;
-border:1px solid #e7ece9;
+border:1px solid rgba(95,111,82,.13);
 border-radius:20px;
-background:#fff;
-box-shadow:0 6px 19px rgba(31,71,56,.04);
+background:var(--lux-ivory);
+box-shadow:0 8px 22px rgba(95,111,82,.07);
 }
 
+.dashboard-summary-grid .dashboard-card:nth-child(1){background:linear-gradient(145deg,#FEFAE0,#F6E6CB)}
+.dashboard-summary-grid .dashboard-card:nth-child(2){background:linear-gradient(145deg,#B6C7AA,#DCE5D4)}
+.dashboard-summary-grid .dashboard-card:nth-child(3){background:linear-gradient(145deg,#E7D4B5,#F2E5D0)}
+.dashboard-summary-grid .dashboard-card:nth-child(4){background:linear-gradient(145deg,#F6E6CB,#FEFAE0)}
+
+.dashboard-bottom-grid .dashboard-card:nth-child(1){background:linear-gradient(145deg,#FEFAE0,#F6E6CB)}
+.dashboard-bottom-grid .dashboard-card:nth-child(2){background:linear-gradient(145deg,#B6C7AA,#DCE5D4)}
+
 .dashboard-card-title{
-color:#384740;
+color:#4f5d47;
 font-size:11px;
 line-height:1.45;
 font-weight:700;
@@ -1725,7 +1974,7 @@ font-weight:700;
 
 .dashboard-card-sub{
 margin-top:3px;
-color:#98a19d;
+color:#77796f;
 font-size:7.5px;
 line-height:1.4;
 }
@@ -1747,15 +1996,15 @@ align-items:center;
 padding:5px 7px;
 border:0;
 border-radius:11px;
-background:#f7f9f8;
-color:#5d6963;
+background:rgba(255,255,255,.54);
+color:#5d6658;
 text-align:left;
 transition:.15s;
 }
 
 .dashboard-rank-row:hover{
 transform:translateX(2px);
-background:#eff6f2;
+background:rgba(255,255,255,.78);
 }
 
 .dashboard-rank-number{
@@ -1765,8 +2014,8 @@ display:flex;
 align-items:center;
 justify-content:center;
 border-radius:7px;
-background:#fff;
-color:#73807a;
+background:rgba(255,255,255,.72);
+color:#6b7166;
 font-size:7.5px;
 font-weight:600;
 }
@@ -1805,8 +2054,8 @@ color:#a46718;
 
 /* TYPE */
 .dashboard-type-wrap{
-height:175px;
-margin-top:7px;
+height:165px;
+margin-top:9px;
 }
 
 .dashboard-type-legend{
@@ -1831,9 +2080,21 @@ border-radius:50%;
 }
 
 .dashboard-type-number{
-color:#35443e;
+color:#4f5d47;
 font-weight:700;
 }
+
+.dashboard-type-note{
+margin-top:8px;
+padding:7px 9px;
+border-radius:10px;
+background:rgba(255,255,255,.52);
+color:#74766d;
+font-size:6.8px;
+line-height:1.5;
+}
+
+
 
 /* YEAR */
 .dashboard-year-card{
@@ -1898,6 +2159,18 @@ position:absolute;
 inset:0;
 }
 
+.dashboard-map-panel .leaflet-tile-pane,
+.dashboard-map-panel .leaflet-tile-container,
+.dashboard-map-panel .leaflet-tile{
+filter:none !important;
+-webkit-filter:none !important;
+opacity:1 !important;
+}
+
+.dashboard-map-panel .leaflet-tile{
+image-rendering:auto !important;
+}
+
 .dashboard-map-tabs{
 position:absolute;
 z-index:700;
@@ -1905,10 +2178,10 @@ left:18px;
 top:17px;
 display:flex;
 padding:4px;
-border:1px solid rgba(255,255,255,.85);
+border:1px solid rgba(95,111,82,.20);
 border-radius:999px;
-background:rgba(255,255,255,.94);
-box-shadow:0 5px 20px rgba(36,60,49,.12);
+background:rgba(254,250,224,.97);
+box-shadow:0 7px 24px rgba(95,111,82,.16);
 }
 
 .dashboard-map-tab{
@@ -1923,7 +2196,7 @@ font-weight:500;
 }
 
 .dashboard-map-tab.active{
-background:#0b684c;
+background:var(--lux-deep);
 color:#fff;
 }
 
@@ -1934,16 +2207,17 @@ left:20px;
 right:20px;
 bottom:18px;
 padding:12px 14px;
-border:1px solid rgba(228,234,231,.95);
+border:1px solid rgba(160,147,125,.30);
 border-radius:17px;
-background:rgba(255,255,255,.95);
-box-shadow:0 7px 25px rgba(30,59,47,.14);
-backdrop-filter:blur(7px);
+background:rgba(246,230,203,.97);
+box-shadow:0 8px 26px rgba(95,111,82,.16);
+backdrop-filter:none;
+-webkit-backdrop-filter:none;
 }
 
 .dashboard-map-legend-title{
 margin-bottom:8px;
-color:#495650;
+color:var(--lux-deep);
 font-size:9px;
 font-weight:700;
 }
@@ -1958,8 +2232,9 @@ gap:7px 14px;
 display:flex;
 align-items:center;
 gap:5px;
-color:#707b76;
+color:#5F6F52;
 font-size:7px;
+font-weight:500;
 }
 
 .dashboard-map-legend-dot{
@@ -2049,6 +2324,273 @@ right:72px;
 width:195px;
 }
 }
+
+/* =========================================================
+   UI TUNING: DASHBOARD WHITE CARDS + CLEARER SECONDARY TEXT
+   ========================================================= */
+
+/* Dashboard: คืนพื้นหลังของบล็อกข้อมูลเป็นสีขาว */
+.dashboard-kpi,
+.dashboard-kpi:nth-child(1),
+.dashboard-kpi:nth-child(2),
+.dashboard-kpi:nth-child(3),
+.dashboard-card,
+.dashboard-summary-grid .dashboard-card:nth-child(1),
+.dashboard-summary-grid .dashboard-card:nth-child(2),
+.dashboard-summary-grid .dashboard-card:nth-child(3),
+.dashboard-summary-grid .dashboard-card:nth-child(4),
+.dashboard-bottom-grid .dashboard-card:nth-child(1),
+.dashboard-bottom-grid .dashboard-card:nth-child(2){
+background:#fff !important;
+border-color:#e1e8e4 !important;
+box-shadow:0 7px 20px rgba(18,56,43,.055) !important;
+}
+
+/* กล่อง legend บนแผนที่ Dashboard ให้กลับเป็นสีขาวด้วย */
+.dashboard-map-legend{
+background:rgba(255,255,255,.97) !important;
+border-color:#dfe7e3 !important;
+box-shadow:0 8px 24px rgba(18,56,43,.10) !important;
+}
+
+/* ตัวอักษรคำอธิบาย/หมายเหตุสีเทา:
+   เข้มและใหญ่ขึ้น แต่ยังรองจากชื่อหลัก */
+.card-subtitle,
+.risk-search-sub{
+color:#66736d !important;
+font-size:9px !important;
+font-weight:400 !important;
+line-height:1.55 !important;
+}
+
+.type-visibility-note,
+.risk-chart-note{
+color:#5f6d66 !important;
+font-size:8.4px !important;
+font-weight:400 !important;
+line-height:1.6 !important;
+}
+
+.selection-list-status,
+.risk-search-status{
+color:#6b7872 !important;
+font-size:8.4px !important;
+font-weight:400 !important;
+line-height:1.5 !important;
+}
+
+.selection-list-place,
+.risk-search-place,
+.risk-selected-place{
+color:#74817b !important;
+font-size:7.8px !important;
+font-weight:400 !important;
+line-height:1.5 !important;
+}
+
+.foot-note,
+.risk-unknown-note{
+color:#707d77 !important;
+font-size:7.8px !important;
+font-weight:400 !important;
+line-height:1.55 !important;
+}
+
+.basemap-desc{
+color:#6f7c76 !important;
+font-size:8.6px !important;
+font-weight:400 !important;
+line-height:1.5 !important;
+}
+
+.search-status{
+color:#68766f !important;
+font-size:9.2px !important;
+font-weight:400 !important;
+line-height:1.5 !important;
+}
+
+.dashboard-sub{
+color:#66736d !important;
+font-size:10px !important;
+font-weight:400 !important;
+line-height:1.5 !important;
+}
+
+.dashboard-kpi-label{
+color:#66736d !important;
+font-size:9px !important;
+font-weight:400 !important;
+line-height:1.5 !important;
+}
+
+.dashboard-card-sub{
+color:#66736d !important;
+font-size:8.5px !important;
+font-weight:400 !important;
+line-height:1.5 !important;
+}
+
+.dashboard-type-note{
+color:#66736d !important;
+font-size:7.8px !important;
+font-weight:400 !important;
+line-height:1.55 !important;
+}
+
+/* ข้อความเลขหน้าหรือคำอธิบายย่อย ยังคงเป็นรองจากหัวข้อ */
+.page-label{
+color:#66736d !important;
+font-size:9.2px !important;
+font-weight:400 !important;
+}
+
+
+
+/* =========================================================
+   PDF BRIEF UPDATE 2026-10-01
+   ========================================================= */
+
+/* KPI: ตัวเลขหลักเป็นสีแดงตามตัวอย่าง */
+.dashboard-kpi-value,
+.dashboard-kpi-value .dashboard-kpi-unit{
+color:#d9252b !important;
+}
+
+/* หัวเรื่องย่อยใน Dashboard ใช้เขียวเข้มให้เหมือนหน้าหลัก */
+.dashboard-card-title,
+.dashboard-map-legend-title{
+color:var(--green-dark) !important;
+}
+
+/* พื้นหลังส่วน Dashboard ที่ระบุในตัวอย่างให้เป็นสีขาว */
+.dashboard,
+.dashboard-shell,
+.dashboard-body,
+.dashboard-data,
+.dashboard-map-panel{
+background:#fff !important;
+}
+
+.dashboard-map-tabs{
+background:rgba(255,255,255,.97) !important;
+}
+
+/* กล่องสรุปสถานะรับมอบใต้กราฟปี */
+.dashboard-transfer-summary{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin-top:12px;
+}
+
+.dashboard-transfer-box{
+min-height:64px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+padding:10px 12px;
+border-radius:13px;
+text-align:center;
+}
+
+.dashboard-transfer-box.received{
+background:#eef5ff;
+color:#376fc3;
+}
+
+.dashboard-transfer-box.pending{
+background:#fff0f0;
+color:#d15359;
+}
+
+.dashboard-transfer-title{
+font-size:9px;
+font-weight:700;
+line-height:1.4;
+}
+
+.dashboard-transfer-value{
+margin-top:4px;
+font-size:15px;
+font-weight:700;
+line-height:1.2;
+}
+
+.dashboard-transfer-note{
+margin-top:3px;
+font-size:6.8px;
+font-weight:400;
+opacity:.78;
+line-height:1.4;
+}
+
+/* ลดความสูงกราฟปีเล็กน้อย เพื่อให้กล่องสรุปอยู่ใน card เดียวกันสวยขึ้น */
+.dashboard-year-wrap{
+height:225px !important;
+}
+
+.dashboard-year-card{
+min-height:360px !important;
+}
+
+
+/* =========================================================
+   DASHBOARD DETAIL TUNING 2026-10-01
+   ========================================================= */
+
+/* KPI icon ใช้สีแดงให้สอดคล้องกับตัวเลข KPI */
+.dashboard-kpi-icon{
+color:#d9252b !important;
+}
+
+/* ตัวเลขใน legend ให้เป็น pill แบบเดียวกับ badge ในหน้าข้อมูล */
+.dashboard-type-number,
+.dashboard-risk-number{
+min-width:48px;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+padding:5px 9px;
+border-radius:999px;
+font-size:8px;
+font-weight:700;
+line-height:1;
+white-space:nowrap;
+}
+
+/* รวมทั้งหมดให้เด่นขึ้น */
+.dashboard-type-total{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:9px;
+margin-top:7px;
+padding:8px 11px;
+border:1px solid #d9e7e0;
+border-radius:12px;
+background:#f5faf7;
+color:#53655d;
+font-size:8px;
+font-weight:500;
+}
+
+.dashboard-type-total strong{
+color:var(--green-dark);
+font-size:13px;
+font-weight:700;
+}
+
+/* เผื่อพื้นที่ให้ตัวเลขปลายแท่งกราฟ */
+.dashboard-type-wrap{
+padding-right:28px;
+}
+
+.dashboard-year-wrap{
+padding-top:10px;
+}
+
 </style>
 </head>
 
@@ -2152,6 +2694,11 @@ onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
 </div>
 
 <div class="type-bar-wrap">
+<div class="type-total-badge">
+<span>รวมทั้งหมด</span>
+<strong id="typeTotalCount">0</strong>
+<span>แห่ง</span>
+</div>
 <canvas id="typeChart"></canvas>
 </div>
 
@@ -2203,6 +2750,28 @@ onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
 </span>
 </div>
 
+<button id="typeOpenAttributeBtn" class="attribute-open-btn" type="button">
+<i class="bi bi-table"></i>
+<span>แสดงรายชื่อทั้งหมด</span>
+<span id="typeOpenAttributeCount" class="attribute-open-count">0 แห่ง</span>
+</button>
+
+
+<div id="typeListPanel" class="selection-list-panel">
+<div class="selection-list-head">
+<div id="typeListTitle" class="selection-list-title">รายชื่อหน่วยงานที่แสดง</div>
+<div id="typeListCount" class="selection-list-count">0 แห่ง</div>
+</div>
+<div class="selection-list-search"><i class="bi bi-search"></i><input id="typeListSearch" type="text" placeholder="ค้นหาชื่อ อปท. จังหวัด อำเภอ หรือตำบล"></div>
+<div id="typeListStatus" class="selection-list-status"></div>
+<div id="typeListItems" class="selection-list-items"></div>
+<div class="selection-list-pagination">
+<button id="typeListPrev" class="selection-list-page-btn" type="button" aria-label="หน้าก่อนหน้า"><i class="bi bi-chevron-left"></i></button>
+<div id="typeListPageInfo" class="selection-list-page-info"></div>
+<button id="typeListNext" class="selection-list-page-btn" type="button" aria-label="หน้าถัดไป"><i class="bi bi-chevron-right"></i></button>
+</div>
+</div>
+
 </div>
 
 
@@ -2234,6 +2803,25 @@ onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
 </div>
 
 <div id="yearNote" class="year-note"></div>
+
+<div id="yearListPanel" class="selection-list-panel">
+<div class="selection-list-head">
+<div id="yearListTitle" class="selection-list-title">รายชื่อ อปท. ตามปีที่เลือก</div>
+<div id="yearListCount" class="selection-list-count">0 แห่ง</div>
+</div>
+<div class="selection-list-search"><i class="bi bi-search"></i><input id="yearListSearch" type="text" placeholder="ค้นหาชื่อ อปท. จังหวัด อำเภอ หรือตำบล"></div>
+<div id="yearListStatus" class="selection-list-status"></div>
+<button id="yearOpenAttributeBtn" class="attribute-open-btn" type="button">
+<i class="bi bi-table"></i>
+<span>เปิดตารางรายชื่อทั้งหมด</span>
+</button>
+<div id="yearListItems" class="selection-list-items"></div>
+<div class="selection-list-pagination">
+<button id="yearListPrev" class="selection-list-page-btn" type="button" aria-label="หน้าก่อนหน้า"><i class="bi bi-chevron-left"></i></button>
+<div id="yearListPageInfo" class="selection-list-page-info"></div>
+<button id="yearListNext" class="selection-list-page-btn" type="button" aria-label="หน้าถัดไป"><i class="bi bi-chevron-right"></i></button>
+</div>
+</div>
 
 </div>
 
@@ -2270,6 +2858,62 @@ onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
 
 <div class="foot-note">
 คลิกแท่งจังหวัดเพื่อเลือกจังหวัด และคลิกจังหวัดเดิมซ้ำเพื่อกลับมาแสดงทุกจังหวัด
+</div>
+
+<div id="forestListPanel" class="selection-list-panel">
+
+<div class="selection-list-head">
+<div id="forestListTitle" class="selection-list-title">
+รายชื่อ อปท. ในจังหวัดที่เลือก
+</div>
+<div id="forestListCount" class="selection-list-count">0 แห่ง</div>
+</div>
+
+<div class="selection-list-search">
+<i class="bi bi-search"></i>
+<input
+id="forestListSearch"
+type="text"
+placeholder="ค้นหาชื่อ อปท. อำเภอ หรือตำบล"
+>
+</div>
+
+<div id="forestListStatus" class="selection-list-status"></div>
+
+<button id="forestOpenAttributeBtn" class="attribute-open-btn" type="button">
+<i class="bi bi-table"></i>
+<span>เปิดตารางรายชื่อทั้งหมด</span>
+</button>
+
+<div id="forestListItems" class="selection-list-items"></div>
+
+<div class="selection-list-pagination">
+
+<button
+id="forestListPrev"
+class="selection-list-page-btn"
+type="button"
+aria-label="หน้าก่อนหน้า"
+>
+<i class="bi bi-chevron-left"></i>
+</button>
+
+<div
+id="forestListPageInfo"
+class="selection-list-page-info"
+></div>
+
+<button
+id="forestListNext"
+class="selection-list-page-btn"
+type="button"
+aria-label="หน้าถัดไป"
+>
+<i class="bi bi-chevron-right"></i>
+</button>
+
+</div>
+
 </div>
 
 </div>
@@ -2347,7 +2991,7 @@ placeholder="ค้นหา เช่น เทศบาล... อบต... เ
 <div>
 
 <div class="card-title">
-จำนวนองค์กรปกครองส่วนท้องถิ่นแยกตามระดับความเสี่ยง
+จำนวนองค์กรปกครองส่วนท้องถิ่นแยกตามระดับความเสี่ยง ปี 2569
 </div>
 
 <div class="card-subtitle">
@@ -2379,7 +3023,7 @@ data-risk-band="high"
 type="button"
 >
 <span class="label">
-เสี่ยงมาก &gt;90
+เสี่ยงมาก &gt;90%
 </span>
 
 <strong id="countHigh">
@@ -2393,7 +3037,7 @@ data-risk-band="medium"
 type="button"
 >
 <span class="label">
-เสี่ยง 50–90
+เสี่ยง 50–90%
 </span>
 
 <strong id="countMedium">
@@ -2407,7 +3051,7 @@ data-risk-band="low"
 type="button"
 >
 <span class="label">
-เสี่ยงน้อย 1–49
+เสี่ยงน้อย 1–49%
 </span>
 
 <strong id="countLow">
@@ -2421,7 +3065,7 @@ data-risk-band="none"
 type="button"
 >
 <span class="label">
-ไม่เสี่ยง 0
+ไม่เสี่ยง 0%
 </span>
 
 <strong id="countNone">
@@ -2435,6 +3079,26 @@ type="button"
 
 <div id="riskChartNote" class="risk-chart-note">
 กำลังแสดงทุกระดับความเสี่ยงบนแผนที่
+</div>
+<div id="riskListPanel" class="selection-list-panel">
+<div class="selection-list-head">
+<div id="riskListTitle" class="selection-list-title">รายชื่อหน่วยงานที่แสดง</div>
+<div id="riskListCount" class="selection-list-count">0 แห่ง</div>
+</div>
+<div class="selection-list-search"><i class="bi bi-search"></i><input id="riskListSearch" type="text" placeholder="ค้นหาชื่อ อปท. จังหวัด อำเภอ หรือตำบล"></div>
+<div id="riskListStatus" class="selection-list-status"></div>
+
+<button id="riskOpenAttributeBtn" class="attribute-open-btn" type="button">
+<i class="bi bi-table"></i>
+<span>เปิดตารางรายชื่อทั้งหมด</span>
+</button>
+
+<div id="riskListItems" class="selection-list-items"></div>
+<div class="selection-list-pagination">
+<button id="riskListPrev" class="selection-list-page-btn" type="button" aria-label="หน้าก่อนหน้า"><i class="bi bi-chevron-left"></i></button>
+<div id="riskListPageInfo" class="selection-list-page-info"></div>
+<button id="riskListNext" class="selection-list-page-btn" type="button" aria-label="หน้าถัดไป"><i class="bi bi-chevron-right"></i></button>
+</div>
 </div>
 
 </div>
@@ -2452,19 +3116,6 @@ type="button"
 
 
 <div class="top-actions">
-
-<div class="language-box">
-
-<button class="language-btn active" data-lang="th">
-TH
-</button>
-
-<button class="language-btn" data-lang="en">
-EN
-</button>
-
-</div>
-
 <a class="home-button" href="index.html">
 <i class="bi bi-house-door-fill"></i>
 </a>
@@ -2556,6 +3207,8 @@ checked
 </div>
 
 
+
+<div class="layer-group">
 <div class="layer-row">
 
 <div class="layer-left">
@@ -2621,7 +3274,7 @@ type="checkbox"
 <div><span style="display:inline-block;width:9px;height:9px;border-radius:3px;background:#37A6A1;margin-right:7px"></span>ภาคใต้</div>
 <div><span style="display:inline-block;width:9px;height:9px;border-radius:3px;background:#9A7B5B;margin-right:7px"></span>ภาคตะวันตก</div>
 </div>
-
+</div>
 
 <div class="layer-row">
 
@@ -2813,6 +3466,55 @@ Dark
 </div>
 
 
+<div id="attributeModal" class="attribute-modal" aria-hidden="true">
+
+<div class="attribute-window">
+
+<div class="attribute-head">
+<div class="attribute-head-left">
+<div id="attributeTitle" class="attribute-title">ตารางรายชื่อองค์กรปกครองส่วนท้องถิ่น</div>
+<div id="attributeSub" class="attribute-sub">ข้อมูลที่กำลังแสดง</div>
+</div>
+<button id="attributeClose" class="attribute-close" type="button" aria-label="ปิด"><i class="bi bi-x-lg"></i></button>
+</div>
+
+<div class="attribute-toolbar">
+<div class="attribute-search">
+<i class="bi bi-search"></i>
+<input id="attributeSearch" type="text" placeholder="ค้นหาชื่อ อปท. ประเภท จังหวัด อำเภอ ตำบล ปี หรือระดับความเสี่ยง">
+</div>
+<div id="attributeCount" class="attribute-count-pill">0 รายการ</div>
+</div>
+
+<div class="attribute-table-scroll">
+<table class="attribute-table">
+<thead>
+<tr>
+<th class="attr-index">ลำดับ</th>
+<th>ชื่อองค์กรปกครองส่วนท้องถิ่น</th>
+<th>ประเภท</th>
+<th>จังหวัด</th>
+<th>อำเภอ</th>
+<th>ตำบล</th>
+<th>ปีถ่ายโอน</th>
+<th>ระดับความเสี่ยง</th>
+<th class="attr-action">แผนที่</th>
+</tr>
+</thead>
+<tbody id="attributeTableBody"></tbody>
+</table>
+</div>
+
+<div class="attribute-footer">
+<button id="attributePrev" class="attribute-page-btn" type="button"><i class="bi bi-chevron-left"></i></button>
+<div id="attributePageInfo" class="attribute-page-info"></div>
+<button id="attributeNext" class="attribute-page-btn" type="button"><i class="bi bi-chevron-right"></i></button>
+</div>
+
+</div>
+</div>
+
+
 <div id="dashboard" class="dashboard">
 
 <div class="dashboard-shell">
@@ -2917,22 +3619,6 @@ style="margin-top:0"
 </div>
 
 
-<div class="dashboard-kpi">
-
-<div class="dashboard-kpi-icon">
-<i class="bi bi-exclamation-triangle"></i>
-</div>
-
-<div class="dashboard-kpi-value">
-<span id="kpiAverageRisk">0</span>
-</div>
-
-<div class="dashboard-kpi-label">
-ค่าเฉลี่ยพื้นที่เสี่ยงของข้อมูลที่แสดง
-</div>
-
-</div>
-
 
 </div>
 
@@ -2996,7 +3682,12 @@ style="margin-top:0"
 </div>
 
 <div class="dashboard-card-sub">
-สัดส่วนของข้อมูลที่กำลังแสดง
+แสดงจำนวนครบทุกประเภทของข้อมูลที่กำลังแสดง
+</div>
+
+<div class="dashboard-type-total">
+<span>รวมทั้งหมด</span>
+<span><strong id="dashTypeTotal">0</strong> แห่ง</span>
 </div>
 
 <div class="dashboard-type-wrap">
@@ -3004,6 +3695,10 @@ style="margin-top:0"
 </div>
 
 <div id="dashTypeLegend" class="dashboard-type-legend"></div>
+
+<div class="dashboard-type-note">
+หมายเหตุ: ประเภทที่มีจำนวนน้อย ระบบกำหนดความยาวแท่งขั้นต่ำเพื่อให้มองเห็น โดยจำนวนจริงแสดงกำกับด้านล่างครบทุกประเภท
+</div>
 
 </div>
 
@@ -3040,13 +3735,29 @@ style="margin-top:0"
 <canvas id="dashYear"></canvas>
 </div>
 
+<div class="dashboard-transfer-summary">
+
+<div class="dashboard-transfer-box received">
+<div class="dashboard-transfer-title">จำนวนที่รับมอบแล้ว</div>
+<div id="dashTransferReceived" class="dashboard-transfer-value">0 แห่ง</div>
+<div class="dashboard-transfer-note">มีข้อมูลปีถ่ายโอนภารกิจ</div>
+</div>
+
+<div class="dashboard-transfer-box pending">
+<div class="dashboard-transfer-title">จำนวนที่ยังไม่ได้รับมอบ</div>
+<div id="dashTransferPending" class="dashboard-transfer-value">0 แห่ง</div>
+<div class="dashboard-transfer-note">ยังไม่ระบุปีถ่ายโอนภารกิจ</div>
+</div>
+
+</div>
+
 </div>
 
 
 <div id="dashRisk" class="dashboard-card">
 
 <div class="dashboard-card-title">
-จำนวนองค์กรปกครองส่วนท้องถิ่นแยกตามระดับความเสี่ยง
+จำนวนองค์กรปกครองส่วนท้องถิ่นแยกตามระดับความเสี่ยง ปี 2569
 </div>
 
 <div class="dashboard-card-sub">
@@ -3796,6 +4507,24 @@ const regionRenderer = L.svg({
     padding:.5
 });
 
+/* แยกชั้นขอบเขตแต่ละระดับเพื่อลดการซ้อนทับ */
+map.createPane("provinceBoundaryPane");
+map.getPane("provinceBoundaryPane").style.zIndex = "410";
+
+map.createPane("districtBoundaryPane");
+map.getPane("districtBoundaryPane").style.zIndex = "420";
+
+map.createPane("subdistrictBoundaryPane");
+map.getPane("subdistrictBoundaryPane").style.zIndex = "430";
+
+map.createPane("districtLabelPane");
+map.getPane("districtLabelPane").style.zIndex = "440";
+map.getPane("districtLabelPane").style.pointerEvents = "none";
+
+map.createPane("subdistrictLabelPane");
+map.getPane("subdistrictLabelPane").style.zIndex = "450";
+map.getPane("subdistrictLabelPane").style.pointerEvents = "none";
+
 L.control.zoom(
 {
 position:"bottomright"
@@ -3805,6 +4534,31 @@ position:"bottomright"
 
 
 /* BASEMAPS */
+
+/* ใช้แหล่งแผนที่ชุดเดียวกันทั้งแผนที่หลักและ Dashboard */
+const BASEMAP_SOURCES = {
+
+light:{
+url:"https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+options:{maxZoom:20}
+},
+
+street:{
+url:"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+options:{maxZoom:19}
+},
+
+satellite:{
+url:"https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+options:{maxZoom:19}
+},
+
+dark:{
+url:"https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+options:{maxZoom:20}
+}
+
+};
 
 const basemaps = {
 
@@ -3842,7 +4596,8 @@ maxZoom:20
 
 };
 
-let currentBase = basemaps.light;
+let currentBaseKey = "light";
+let currentBase = basemaps[currentBaseKey];
 
 currentBase.addTo(map);
 
@@ -3871,6 +4626,10 @@ let districtLayer = null;
 
 let subdistrictLayer = null;
 
+/* ชื่ออำเภอ/ตำบลที่แสดงตามระดับ zoom */
+const districtLabelLayer = L.layerGroup().addTo(map);
+const subdistrictLabelLayer = L.layerGroup().addTo(map);
+
 let geographicFeatures = [];
 
 let currentFeatures = [];
@@ -3890,6 +4649,7 @@ let dashYearChart = null;
 let dashRiskChart = null;
 
 let dashMap = null;
+let dashBaseLayer = null;
 
 let dashLayer = null;
 
@@ -3898,6 +4658,12 @@ let forestRows = [];
 let riskSearchMarker = null;
 
 let searchMarker = null;
+
+let attributeTableFeatures = [];
+let attributeTableFiltered = [];
+let attributeTablePageFeatures = [];
+let attributeTablePage = 1;
+const ATTRIBUTE_TABLE_PAGE_SIZE = 50;
 
 let dashboardFeatures = [];
 
@@ -3923,6 +4689,15 @@ selectedYear:"",
 riskLevel:"all",
 
 forestPage:1,
+
+typeListPage:1,
+riskListPage:1,
+yearListPage:1,
+forestListPage:1,
+typeListKey:"",
+riskListKey:"",
+yearListKey:"",
+forestListKey:"",
 
 regionColors:false
 
@@ -4056,6 +4831,18 @@ state.riskLevel
 
 }
 
+/*
+ตัวกรองความเสี่ยงที่เลือกจากหน้า "พื้นที่เสี่ยง"
+จะถูกใช้ต่อเมื่อสลับไปหน้า "ข้อมูลที่แสดง"
+*/
+function getLinkedDisplayFeatures(features){
+
+return getRiskFeatures(
+features || []
+);
+
+}
+
 
 /* RENDER MARKERS */
 
@@ -4064,11 +4851,9 @@ function renderMarkers(features){
 cluster.clearLayers();
 
 const shown =
-state.mode === "risk"
-?
-getRiskFeatures(features)
-:
-features;
+getLinkedDisplayFeatures(
+features
+);
 
 shown.forEach(feature=>{
 
@@ -4675,6 +5460,9 @@ counts["องค์การบริหารส่วนตำบล"]
 0
 );
 
+$("typeTotalCount").textContent = fmt(values.reduce((sum,value)=>sum+value,0));
+$("typeOpenAttributeCount").textContent = `${fmt(getLinkedDisplayFeatures(currentFeatures).length)} แห่ง`;
+
 document
 .querySelectorAll(
 ".type-filter-btn"
@@ -4704,6 +5492,8 @@ $("clearTypeBtn")
 "show",
 !!state.selectedType
 );
+
+renderSelectionList("type");
 
 }
 
@@ -5000,6 +5790,8 @@ state.selectedYear
 `กำลังแสดงจุด อปท. ที่ถ่ายโอนภารกิจในปี ${state.selectedYear} บนแผนที่`
 :
 "";
+
+renderSelectionList("year");
 
 }
 
@@ -5408,6 +6200,13 @@ state.filters.lao = "";
 
 state.forestPage = 1;
 
+state.typeListPage = 1;
+state.riskListPage = 1;
+state.forestListPage = 1;
+state.typeListKey = "";
+state.riskListKey = "";
+state.forestListKey = "";
+
 updateSelects();
 
 applyFilters(true);
@@ -5438,6 +6237,11 @@ state.forestPage >= pages;
 $("forestLast")
 .disabled =
 state.forestPage >= pages;
+
+/* แสดงรายชื่อ อปท. ของจังหวัดที่กำลังเลือก */
+renderSelectionList(
+"forest"
+);
 
 }
 
@@ -5555,6 +6359,10 @@ state.riskLevel === band
 "all"
 :
 band;
+
+state.typeListPage = 1;
+state.yearListPage = 1;
+state.forestListPage = 1;
 
 renderMarkers(
 currentFeatures
@@ -5802,6 +6610,8 @@ elements[0].index
 
 }
 );
+
+renderSelectionList("risk");
 
 }
 
@@ -6484,8 +7294,8 @@ selected &&
 name === selected
 ){
 return {
-color:"#f39a36",
-weight:3.2,
+color:"#1D4ED8",
+weight:3.6,
 opacity:1,
 fill:true,
 fillColor:regionColor,
@@ -6495,22 +7305,22 @@ fillOpacity:.72
 
 if(selected){
 return {
-color:"#75877f",
+color:"#64748B",
 weight:.9,
-opacity:.65,
+opacity:.50,
 fill:true,
 fillColor:regionColor,
-fillOpacity:.34
+fillOpacity:.30
 };
 }
 
 return {
-color:"#ffffff",
-weight:.8,
+color:"#1D4ED8",
+weight:1.5,
 opacity:.72,
 fill:true,
 fillColor:regionColor,
-fillOpacity:.56
+fillOpacity:.52
 };
 
 }
@@ -6521,11 +7331,11 @@ name === selected
 ){
 
 return {
-color:"#365a9f",
-weight:3.2,
+color:"#1D4ED8",
+weight:3.6,
 opacity:1,
-fillColor:"#7f9fd4",
-fillOpacity:.11
+fillColor:"#60A5FA",
+fillOpacity:.10
 };
 
 }
@@ -6543,11 +7353,11 @@ fillOpacity:.012
 }
 
 return {
-color:"#70877f",
-weight:1,
-opacity:.78,
-fillColor:"#d9e3df",
-fillOpacity:.025
+color:"#1D4ED8",
+weight:1.8,
+opacity:.82,
+fillColor:"#DBEAFE",
+fillOpacity:.015
 };
 
 }
@@ -6591,6 +7401,8 @@ function createProvinceLayer(data){
 return L.geoJSON(
 data,
 {
+
+pane:"provinceBoundaryPane",
 
 style:
 provinceStyle,
@@ -6657,8 +7469,8 @@ REGION_COLORS[region]
 
 layer.setStyle(
 {
-color:"#f39a36",
-weight:2.4,
+color:"#1D4ED8",
+weight:3,
 opacity:1,
 fill:true,
 fillColor:regionColor,
@@ -6671,11 +7483,11 @@ else{
 
 layer.setStyle(
 {
-color:"#f39a36",
-weight:2,
+color:"#1D4ED8",
+weight:3,
 opacity:1,
-fillColor:"#f6b46e",
-fillOpacity:.08
+fillColor:"#93C5FD",
+fillOpacity:.09
 }
 );
 
@@ -6687,21 +7499,13 @@ mouseout:
 refreshProvinceStyles,
 
 click:
-()=>{
+async ()=>{
 
-if(
-layer.getBounds &&
-layer.getBounds().isValid()
-){
-
-map.fitBounds(
-layer.getBounds(),
-{
-padding:[45,45]
-}
+await selectBoundaryFromPolygon(
+feature,
+"province",
+layer
 );
-
-}
 
 }
 
@@ -6778,9 +7582,1258 @@ return null;
 }
 
 
+/* ADMINISTRATIVE BOUNDARIES */
+
+const DISTRICT_NAME_KEYS = [
+"AMP_NAM_T",
+"AMPHOE_T",
+"AMPHUR_T",
+"อำเภอ",
+"ADM2_TH",
+"NAME_2"
+];
+
+const SUBDISTRICT_NAME_KEYS = [
+"TAM_NAM_T",
+"TAMBON_T",
+"ตำบล",
+"ADM3_TH",
+"NAME_3"
+];
+
+const BOUNDARY_PROVINCE_KEYS = [
+"P_NAME_T",
+"PROV_NAM_T",
+"PROVINCE",
+"จังหวัด",
+"CHANGWAT_T",
+"ADM1_TH",
+"NAME_1",
+"PROV_NAME"
+];
+
+const BOUNDARY_DISTRICT_KEYS = [
+"AMP_NAM_T",
+"AMPHOE_T",
+"AMPHUR_T",
+"DISTRICT",
+"อำเภอ",
+"ADM2_TH",
+"NAME_2"
+];
+
+
+function normalizeAreaName(value,level=""){
+
+let name =
+clean(value)
+.replace(/\s+/g," ")
+.trim();
+
+if(!name){
+return "";
+}
+
+if(level === "province"){
+
+name =
+name
+.replace(/^จังหวัด\s*/,"")
+.replace(/^จ\.\s*/,"");
+
+}
+else if(level === "district"){
+
+name =
+name
+.replace(/^อำเภอ\s*/,"")
+.replace(/^อ\.\s*/,"")
+.replace(/^เขต\s*/,"");
+
+}
+else if(level === "subdistrict"){
+
+name =
+name
+.replace(/^ตำบล\s*/,"")
+.replace(/^ต\.\s*/,"")
+.replace(/^แขวง\s*/,"");
+
+}
+
+return name.trim();
+
+}
+
+
+function boundaryName(feature,kind,nameKeys){
+
+return normalizeAreaName(
+getAny(
+feature?.properties || {},
+nameKeys || (
+kind === "district"
+?
+DISTRICT_NAME_KEYS
+:
+SUBDISTRICT_NAME_KEYS
+)
+),
+kind
+);
+
+}
+
+
+function boundaryProvinceName(feature){
+
+return normalizeAreaName(
+getAny(
+feature?.properties || {},
+BOUNDARY_PROVINCE_KEYS
+),
+"province"
+);
+
+}
+
+
+function boundaryDistrictName(feature){
+
+return normalizeAreaName(
+getAny(
+feature?.properties || {},
+BOUNDARY_DISTRICT_KEYS
+),
+"district"
+);
+
+}
+
+
+function areaMatches(a,b,level=""){
+
+return (
+normalizeAreaName(a,level)
+===
+normalizeAreaName(b,level)
+);
+
+}
+
+
+function boundaryMatchesCurrentParents(feature,kind){
+
+const province =
+boundaryProvinceName(feature);
+
+if(
+state.filters.province
+&&
+province
+&&
+!areaMatches(
+province,
+state.filters.province,
+"province"
+)
+){
+return false;
+}
+
+if(kind === "subdistrict"){
+
+const district =
+boundaryDistrictName(feature);
+
+if(
+state.filters.district
+&&
+district
+&&
+!areaMatches(
+district,
+state.filters.district,
+"district"
+)
+){
+return false;
+}
+
+}
+
+return true;
+
+}
+
+
+/* อำเภอ = สี teal + เส้นประ */
+function districtStyle(feature){
+
+const name =
+boundaryName(
+feature,
+"district",
+DISTRICT_NAME_KEYS
+);
+
+const selected =
+state.filters.district;
+
+const parentMatch =
+boundaryMatchesCurrentParents(
+feature,
+"district"
+);
+
+if(
+selected
+&&
+parentMatch
+&&
+areaMatches(
+name,
+selected,
+"district"
+)
+){
+
+return {
+color:"#00695C",
+weight:3.6,
+opacity:1,
+dashArray:null,
+lineCap:"round",
+lineJoin:"round",
+fill:true,
+fillColor:"#4DB6AC",
+fillOpacity:.09
+};
+
+}
+
+if(!parentMatch){
+
+return {
+color:"#0F766E",
+weight:.65,
+opacity:.12,
+dashArray:"8 6",
+fill:true,
+fillOpacity:0
+};
+
+}
+
+return {
+color:"#0F766E",
+weight:1.55,
+opacity:.90,
+dashArray:"8 5",
+lineCap:"round",
+lineJoin:"round",
+fill:true,
+fillOpacity:.002
+};
+
+}
+
+
+/* ตำบล = สี crimson + เส้นจุด */
+function subdistrictStyle(feature){
+
+const name =
+boundaryName(
+feature,
+"subdistrict",
+SUBDISTRICT_NAME_KEYS
+);
+
+const selected =
+state.filters.subdistrict;
+
+const parentMatch =
+boundaryMatchesCurrentParents(
+feature,
+"subdistrict"
+);
+
+if(
+selected
+&&
+parentMatch
+&&
+areaMatches(
+name,
+selected,
+"subdistrict"
+)
+){
+
+return {
+color:"#9F1239",
+weight:3,
+opacity:1,
+dashArray:null,
+lineCap:"round",
+lineJoin:"round",
+fill:true,
+fillColor:"#FB7185",
+fillOpacity:.10
+};
+
+}
+
+if(!parentMatch){
+
+return {
+color:"#BE123C",
+weight:.5,
+opacity:.09,
+dashArray:"2 6",
+fill:true,
+fillOpacity:0
+};
+
+}
+
+return {
+color:"#BE123C",
+weight:1,
+opacity:.72,
+dashArray:"2 5",
+lineCap:"round",
+lineJoin:"round",
+fill:true,
+fillOpacity:.001
+};
+
+}
+
+
+function boundaryStyle(kind,feature){
+
+return kind === "district"
+?
+districtStyle(feature)
+:
+subdistrictStyle(feature);
+
+}
+
+
+function boundaryHoverStyle(kind,feature){
+
+const base =
+boundaryStyle(
+kind,
+feature
+);
+
+if(kind === "district"){
+
+return {
+...base,
+color:"#004D40",
+weight:Math.max(2.8,Number(base.weight || 0)),
+opacity:1,
+fill:true,
+fillColor:"#80CBC4",
+fillOpacity:.08
+};
+
+}
+
+return {
+...base,
+color:"#881337",
+weight:Math.max(2.4,Number(base.weight || 0)),
+opacity:1,
+fill:true,
+fillColor:"#FDA4AF",
+fillOpacity:.08
+};
+
+}
+
+
+function refreshDistrictStyles(){
+
+if(!districtLayer){
+return;
+}
+
+districtLayer.eachLayer(layer=>{
+
+layer.setStyle(
+districtStyle(
+layer.feature
+)
+);
+
+const name =
+boundaryName(
+layer.feature,
+"district",
+DISTRICT_NAME_KEYS
+);
+
+if(
+state.filters.district
+&&
+boundaryMatchesCurrentParents(
+layer.feature,
+"district"
+)
+&&
+areaMatches(
+name,
+state.filters.district,
+"district"
+)
+&&
+layer.bringToFront
+){
+layer.bringToFront();
+}
+
+});
+
+updateBoundaryLabels();
+
+}
+
+
+function refreshSubdistrictStyles(){
+
+if(!subdistrictLayer){
+return;
+}
+
+subdistrictLayer.eachLayer(layer=>{
+
+layer.setStyle(
+subdistrictStyle(
+layer.feature
+)
+);
+
+const name =
+boundaryName(
+layer.feature,
+"subdistrict",
+SUBDISTRICT_NAME_KEYS
+);
+
+if(
+state.filters.subdistrict
+&&
+boundaryMatchesCurrentParents(
+layer.feature,
+"subdistrict"
+)
+&&
+areaMatches(
+name,
+state.filters.subdistrict,
+"subdistrict"
+)
+&&
+layer.bringToFront
+){
+layer.bringToFront();
+}
+
+});
+
+updateBoundaryLabels();
+
+}
+
+
+function refreshAllBoundaryStyles(){
+
+refreshProvinceStyles();
+refreshDistrictStyles();
+refreshSubdistrictStyles();
+
+}
+
+
+function formatBoundaryLabel(kind,name){
+
+const cleanName =
+normalizeAreaName(
+name,
+kind
+);
+
+if(kind === "district"){
+return `อ.${cleanName}`;
+}
+
+return `ต.${cleanName}`;
+
+}
+
+
+function createBoundaryLabel(layer,kind,name){
+
+if(
+!layer?.getBounds
+||
+!layer.getBounds().isValid()
+){
+return null;
+}
+
+const center =
+layer.getBounds().getCenter();
+
+const className =
+kind === "district"
+?
+"district"
+:
+"subdistrict";
+
+const pane =
+kind === "district"
+?
+"districtLabelPane"
+:
+"subdistrictLabelPane";
+
+return L.marker(
+center,
+{
+pane,
+interactive:false,
+keyboard:false,
+icon:
+L.divIcon(
+{
+className:"boundary-label-marker",
+html:
+`<span class="boundary-map-label ${className}">${esc(formatBoundaryLabel(kind,name))}</span>`,
+iconSize:null,
+iconAnchor:[0,0]
+}
+)
+}
+);
+
+}
+
+
+function updateBoundaryLabels(){
+
+districtLabelLayer.clearLayers();
+subdistrictLabelLayer.clearLayers();
+
+const zoom =
+map.getZoom();
+
+const mapBounds =
+map.getBounds();
+
+
+/* Zoom 9–11 แสดงชื่ออำเภอ
+   ถ้าเลือกอำเภอไว้ จะคงชื่ออำเภอที่เลือกเมื่อ zoom มากกว่า 11 */
+if(
+districtLayer
+&&
+map.hasLayer(districtLayer)
+&&
+(
+(zoom >= 9 && zoom < 12)
+||
+state.filters.district
+)
+){
+
+let districtCount = 0;
+
+districtLayer.eachLayer(layer=>{
+
+if(districtCount >= 45){
+return;
+}
+
+if(
+!layer.getBounds
+||
+!layer.getBounds().isValid()
+||
+!layer.getBounds().intersects(mapBounds)
+){
+return;
+}
+
+const name =
+boundaryName(
+layer.feature,
+"district",
+DISTRICT_NAME_KEYS
+);
+
+if(!name){
+return;
+}
+
+if(
+zoom >= 12
+&&
+state.filters.district
+&&
+!areaMatches(
+name,
+state.filters.district,
+"district"
+)
+){
+return;
+}
+
+if(
+!boundaryMatchesCurrentParents(
+layer.feature,
+"district"
+)
+){
+return;
+}
+
+const label =
+createBoundaryLabel(
+layer,
+"district",
+name
+);
+
+if(label){
+
+districtLabelLayer.addLayer(label);
+districtCount++;
+
+}
+
+});
+
+}
+
+
+/* Zoom 12 ขึ้นไปแสดงชื่อตำบล */
+if(
+subdistrictLayer
+&&
+map.hasLayer(subdistrictLayer)
+&&
+(
+zoom >= 12
+||
+state.filters.subdistrict
+)
+){
+
+let subdistrictCount = 0;
+
+subdistrictLayer.eachLayer(layer=>{
+
+if(subdistrictCount >= 70){
+return;
+}
+
+if(
+!layer.getBounds
+||
+!layer.getBounds().isValid()
+||
+!layer.getBounds().intersects(mapBounds)
+){
+return;
+}
+
+if(
+!boundaryMatchesCurrentParents(
+layer.feature,
+"subdistrict"
+)
+){
+return;
+}
+
+const name =
+boundaryName(
+layer.feature,
+"subdistrict",
+SUBDISTRICT_NAME_KEYS
+);
+
+if(!name){
+return;
+}
+
+const label =
+createBoundaryLabel(
+layer,
+"subdistrict",
+name
+);
+
+if(label){
+
+subdistrictLabelLayer.addLayer(label);
+subdistrictCount++;
+
+}
+
+});
+
+}
+
+}
+
+
+function findBoundaryLayer(kind){
+
+const source =
+kind === "province"
+?
+provinceLayer
+:
+(
+kind === "district"
+?
+districtLayer
+:
+subdistrictLayer
+);
+
+if(!source){
+return null;
+}
+
+let found = null;
+
+source.eachLayer(layer=>{
+
+if(found){
+return;
+}
+
+if(kind === "province"){
+
+const name =
+provinceName(
+layer.feature?.properties || {}
+);
+
+if(
+state.filters.province
+&&
+areaMatches(
+name,
+state.filters.province,
+"province"
+)
+){
+found = layer;
+}
+
+return;
+}
+
+if(
+!boundaryMatchesCurrentParents(
+layer.feature,
+kind
+)
+){
+return;
+}
+
+const name =
+boundaryName(
+layer.feature,
+kind,
+kind === "district"
+?
+DISTRICT_NAME_KEYS
+:
+SUBDISTRICT_NAME_KEYS
+);
+
+const selected =
+kind === "district"
+?
+state.filters.district
+:
+state.filters.subdistrict;
+
+if(
+selected
+&&
+areaMatches(
+name,
+selected,
+kind
+)
+){
+found = layer;
+}
+
+});
+
+return found;
+
+}
+
+
+function focusSelectedBoundary(kind){
+
+const layer =
+findBoundaryLayer(kind);
+
+if(
+!layer
+||
+!layer.getBounds
+||
+!layer.getBounds().isValid()
+){
+return false;
+}
+
+const maxZoom =
+kind === "province"
+?
+9
+:
+(
+kind === "district"
+?
+11
+:
+14
+);
+
+map.fitBounds(
+layer.getBounds(),
+{
+padding:[45,45],
+maxZoom
+}
+);
+
+return true;
+
+}
+
+
+/* =========================================================
+   CLICK POLYGON -> ใช้เป็นตัวกรองเหมือนเลือกจาก Dropdown
+   ========================================================= */
+
+function resolveBoundaryPointContext(
+feature,
+kind
+){
+
+const properties =
+feature?.properties || {};
+
+const rawProvince =
+kind === "province"
+?
+provinceName(properties)
+:
+boundaryProvinceName(feature);
+
+const rawDistrict =
+kind === "district"
+?
+boundaryName(
+feature,
+"district",
+DISTRICT_NAME_KEYS
+)
+:
+(
+kind === "subdistrict"
+?
+boundaryDistrictName(feature)
+:
+""
+);
+
+const rawSubdistrict =
+kind === "subdistrict"
+?
+boundaryName(
+feature,
+"subdistrict",
+SUBDISTRICT_NAME_KEYS
+)
+:
+"";
+
+/* ถ้า GeoJSON ระดับย่อยไม่มีชื่อ parent ให้ใช้ตัวกรองปัจจุบันช่วยก่อน */
+const preferredProvince =
+rawProvince
+||
+state.filters.province
+||
+"";
+
+const preferredDistrict =
+rawDistrict
+||
+state.filters.district
+||
+"";
+
+let candidates =
+pointData.features.filter(
+point=>{
+
+const p =
+point.properties || {};
+
+if(
+preferredProvince
+&&
+!areaMatches(
+getProvince(p),
+preferredProvince,
+"province"
+)
+){
+return false;
+}
+
+if(
+kind === "district"
+&&
+rawDistrict
+&&
+!areaMatches(
+getDistrict(p),
+rawDistrict,
+"district"
+)
+){
+return false;
+}
+
+if(
+kind === "subdistrict"
+&&
+preferredDistrict
+&&
+!areaMatches(
+getDistrict(p),
+preferredDistrict,
+"district"
+)
+){
+return false;
+}
+
+if(
+kind === "subdistrict"
+&&
+rawSubdistrict
+&&
+!areaMatches(
+getSubdistrict(p),
+rawSubdistrict,
+"subdistrict"
+)
+){
+return false;
+}
+
+return true;
+
+}
+);
+
+/* fallback กรณี boundary file ไม่มี parent field */
+if(
+!candidates.length
+&&
+kind === "district"
+&&
+rawDistrict
+){
+
+candidates =
+pointData.features.filter(
+point=>
+areaMatches(
+getDistrict(
+point.properties || {}
+),
+rawDistrict,
+"district"
+)
+);
+
+}
+
+if(
+!candidates.length
+&&
+kind === "subdistrict"
+&&
+rawSubdistrict
+){
+
+candidates =
+pointData.features.filter(
+point=>
+areaMatches(
+getSubdistrict(
+point.properties || {}
+),
+rawSubdistrict,
+"subdistrict"
+)
+);
+
+}
+
+const sample =
+candidates[0]?.properties || {};
+
+return {
+
+province:
+getProvince(sample)
+||
+preferredProvince
+||
+rawProvince
+||
+"",
+
+district:
+kind === "province"
+?
+""
+:
+(
+getDistrict(sample)
+||
+preferredDistrict
+||
+rawDistrict
+||
+""
+),
+
+subdistrict:
+kind === "subdistrict"
+?
+(
+getSubdistrict(sample)
+||
+rawSubdistrict
+||
+""
+)
+:
+"",
+
+features:
+candidates
+
+};
+
+}
+
+
+async function selectBoundaryFromPolygon(
+feature,
+kind,
+layer
+){
+
+try{
+
+/*
+คลิกจังหวัดเดิมซ้ำอีกครั้ง = ยกเลิกการเลือกจังหวัด
+และกลับมาแสดงข้อมูลทุกจังหวัดในเงื่อนไขอื่นที่ใช้อยู่
+*/
+if(kind === "province"){
+
+const clickedProvince =
+provinceName(
+feature?.properties || {}
+);
+
+if(
+state.filters.province
+&&
+clickedProvince
+&&
+areaMatches(
+clickedProvince,
+state.filters.province,
+"province"
+)
+){
+
+state.filters.province = "";
+state.filters.district = "";
+state.filters.subdistrict = "";
+state.filters.lao = "";
+
+state.selectedType = "";
+state.selectedYear = "";
+state.forestPage = 1;
+
+updateSelects();
+applyFilters(false);
+
+refreshAllBoundaryStyles();
+updateBoundaryLabels();
+
+const shown =
+state.mode === "risk"
+?
+getRiskFeatures(currentFeatures)
+:
+currentFeatures;
+
+if(shown.length){
+fitFeatures(shown);
+}
+else{
+map.setView([13.2,101],6);
+}
+
+return;
+
+}
+
+}
+
+const context =
+resolveBoundaryPointContext(
+feature,
+kind
+);
+
+if(kind === "province"){
+
+state.filters.province =
+context.province;
+
+state.filters.district = "";
+state.filters.subdistrict = "";
+state.filters.lao = "";
+
+}
+else if(kind === "district"){
+
+if(context.province){
+state.filters.province = context.province;
+}
+
+state.filters.district =
+context.district;
+
+state.filters.subdistrict = "";
+state.filters.lao = "";
+
+}
+else if(kind === "subdistrict"){
+
+if(context.province){
+state.filters.province = context.province;
+}
+
+if(context.district){
+state.filters.district = context.district;
+}
+
+state.filters.subdistrict =
+context.subdistrict;
+
+state.filters.lao = "";
+
+}
+
+/* ให้พฤติกรรมเหมือนเลือกจังหวัด/อำเภอ/ตำบลจากตัวกรองเดิม */
+state.selectedType = "";
+state.selectedYear = "";
+state.forestPage = 1;
+
+updateSelects();
+applyFilters(false);
+
+/* เปิด layer ที่จำเป็นอัตโนมัติและทำ selected style */
+if(kind === "district"){
+await ensureDistrictLayerVisible();
+}
+else if(kind === "subdistrict"){
+await ensureSubdistrictLayerVisible();
+}
+
+refreshAllBoundaryStyles();
+updateBoundaryLabels();
+
+/* ซูมไปที่ polygon ที่ผู้ใช้กดโดยตรง */
+if(
+layer?.getBounds
+&&
+layer.getBounds().isValid()
+){
+
+map.fitBounds(
+layer.getBounds(),
+{
+padding:[45,45],
+maxZoom:
+kind === "province"
+?
+9
+:
+(
+kind === "district"
+?
+11
+:
+14
+)
+}
+);
+
+}
+else{
+
+focusSelectedBoundary(kind);
+
+}
+
+}
+catch(error){
+
+console.error(
+"เลือกพื้นที่จาก polygon ไม่สำเร็จ",
+error
+);
+
+}
+
+}
+
+
 async function loadBoundary(
 file,
-color,
+kind,
 nameKeys
 ){
 
@@ -6790,44 +8843,171 @@ await fetchJSON(
 true
 );
 
+const pane =
+kind === "district"
+?
+"districtBoundaryPane"
+:
+"subdistrictBoundaryPane";
+
 return L.geoJSON(
 data,
 {
 
-style:{
-color,
-weight:.75,
-fillOpacity:.01
-},
+pane,
+
+style:
+feature=>
+boundaryStyle(
+kind,
+feature
+),
 
 onEachFeature:
 (feature,layer)=>{
 
 const name =
-clean(
-getAny(
-feature.properties || {},
+boundaryName(
+feature,
+kind,
 nameKeys
-)
 );
 
 if(name){
 
 layer.bindTooltip(
-name,
+formatBoundaryLabel(
+kind,
+name
+),
 {
-sticky:true
+sticky:true,
+className:"boundary-hover-tooltip"
+}
+);
+
+}
+
+layer.on(
+{
+
+mouseover:
+()=>{
+
+layer.setStyle(
+boundaryHoverStyle(
+kind,
+feature
+)
+);
+
+if(layer.bringToFront){
+layer.bringToFront();
+}
+
+},
+
+mouseout:
+()=>{
+
+if(kind === "district"){
+refreshDistrictStyles();
+}
+else{
+refreshSubdistrictStyles();
+}
+
+},
+
+click:
+async ()=>{
+
+await selectBoundaryFromPolygon(
+feature,
+kind,
+layer
+);
+
+}
+
 }
 );
 
 }
 
 }
-
-}
 );
 
 }
+
+
+async function ensureDistrictLayerVisible(){
+
+if(!districtLayer){
+
+districtLayer =
+await loadBoundary(
+"district.geojson",
+"district",
+DISTRICT_NAME_KEYS
+);
+
+}
+
+if(!map.hasLayer(districtLayer)){
+districtLayer.addTo(map);
+}
+
+const toggle =
+$("districtToggle");
+
+if(toggle){
+toggle.checked = true;
+}
+
+refreshDistrictStyles();
+
+return districtLayer;
+
+}
+
+
+async function ensureSubdistrictLayerVisible(){
+
+if(!subdistrictLayer){
+
+subdistrictLayer =
+await loadBoundary(
+"subdistrict.geojson",
+"subdistrict",
+SUBDISTRICT_NAME_KEYS
+);
+
+}
+
+if(!map.hasLayer(subdistrictLayer)){
+subdistrictLayer.addTo(map);
+}
+
+const toggle =
+$("subdistrictToggle");
+
+if(toggle){
+toggle.checked = true;
+}
+
+refreshSubdistrictStyles();
+
+return subdistrictLayer;
+
+}
+
+
+/* อัปเดต label เมื่อซูมหรือเลื่อนแผนที่ */
+map.on(
+"zoomend moveend",
+updateBoundaryLabels
+);
 
 
 /* LEGEND */
@@ -6853,7 +9033,7 @@ body.innerHTML =
 class="legend-dot"
 style="background:${RISK_COLORS.high}"
 ></span>
-เสี่ยงมาก &gt;90
+เสี่ยงมาก &gt;90%
 </div>
 
 <div class="legend-row">
@@ -6861,7 +9041,7 @@ style="background:${RISK_COLORS.high}"
 class="legend-dot"
 style="background:${RISK_COLORS.medium}"
 ></span>
-เสี่ยง 50–90
+เสี่ยง 50–90%
 </div>
 
 <div class="legend-row">
@@ -6869,7 +9049,7 @@ style="background:${RISK_COLORS.medium}"
 class="legend-dot"
 style="background:${RISK_COLORS.low}"
 ></span>
-เสี่ยงน้อย 1–49
+เสี่ยงน้อย 1–49%
 </div>
 
 <div class="legend-row">
@@ -6877,7 +9057,7 @@ style="background:${RISK_COLORS.low}"
 class="legend-dot"
 style="background:${RISK_COLORS.none}"
 ></span>
-ไม่เสี่ยง 0
+ไม่เสี่ยง 0%
 </div>
 
 `;
@@ -6929,12 +9109,22 @@ renderMarkers(
 currentFeatures
 );
 
-updateTypeChart(
+const linkedGeographicFeatures =
+getLinkedDisplayFeatures(
 geographicFeatures
 );
 
+const linkedCurrentFeatures =
+getLinkedDisplayFeatures(
+currentFeatures
+);
+
+updateTypeChart(
+linkedGeographicFeatures
+);
+
 updateYearChart(
-geographicFeatures
+linkedGeographicFeatures
 .filter(
 feature=>
 !state.selectedType
@@ -6948,14 +9138,15 @@ state.selectedType
 );
 
 updateForest(
-currentFeatures
+linkedCurrentFeatures
 );
 
+/* หน้า risk ยังใช้ currentFeatures เดิม เพื่อให้กราฟเห็นทุกระดับ */
 updateRiskUI(
 currentFeatures
 );
 
-refreshProvinceStyles();
+refreshAllBoundaryStyles();
 
 updateLegend();
 
@@ -7400,6 +9591,682 @@ $("infoDrawer")
 }
 
 
+
+/* FILTERED NAME LISTS */
+const NAME_LIST_PAGE_SIZE = 50;
+
+function listFeatureName(feature){
+const p = feature?.properties || {};
+return getFullName(p) || getName(p) || getAgency(p) || "ไม่ระบุชื่อ";
+}
+
+function listFeaturePlace(feature){
+const p = feature?.properties || {};
+return [getSubdistrict(p),getDistrict(p),getProvince(p)].filter(Boolean).join(" • ");
+}
+
+function listFeatureSearchText(feature){
+const p = feature?.properties || {};
+return [listFeatureName(feature),getCode(p),getType(p),getSubdistrict(p),getDistrict(p),getProvince(p)]
+.filter(Boolean).join(" ").toLowerCase();
+}
+
+function sortListFeatures(features){
+return features.slice().sort((a,b)=>{
+const ap=a.properties||{};
+const bp=b.properties||{};
+return getProvince(ap).localeCompare(getProvince(bp),"th") ||
+getDistrict(ap).localeCompare(getDistrict(bp),"th") ||
+listFeatureName(a).localeCompare(listFeatureName(b),"th");
+});
+}
+
+function focusFeatureFromNameList(feature){
+if(!validPoint(feature)) return;
+const c=feature.geometry.coordinates;
+map.flyTo([Number(c[1]),Number(c[0])],Math.max(map.getZoom(),14),{duration:.65});
+showInfo(feature);
+}
+
+function renderSelectionList(kind){
+
+const isType = kind === "type";
+const isRisk = kind === "risk";
+const isYear = kind === "year";
+const isForest = kind === "forest";
+
+const prefix =
+isType
+?
+"typeList"
+:
+(
+isRisk
+?
+"riskList"
+:
+(
+isYear
+?
+"yearList"
+:
+"forestList"
+)
+);
+
+const panel =
+$(prefix + "Panel");
+
+if(!panel){
+return;
+}
+
+const selectedKey =
+isType
+?
+state.selectedType
+:
+(
+isRisk
+?
+state.riskLevel
+:
+(
+isYear
+?
+state.selectedYear
+:
+state.filters.province
+)
+);
+
+const shouldShow =
+isType
+?
+!!state.selectedType
+:
+(
+isRisk
+?
+state.riskLevel !== "all"
+:
+(
+isYear
+?
+!!state.selectedYear
+:
+!!state.filters.province
+)
+);
+
+const pageKey =
+isType
+?
+"typeListPage"
+:
+(
+isRisk
+?
+"riskListPage"
+:
+(
+isYear
+?
+"yearListPage"
+:
+"forestListPage"
+)
+);
+
+const selectionKey =
+isType
+?
+"typeListKey"
+:
+(
+isRisk
+?
+"riskListKey"
+:
+(
+isYear
+?
+"yearListKey"
+:
+"forestListKey"
+)
+);
+
+const searchInput =
+$(prefix + "Search");
+
+if(
+state[selectionKey] !== selectedKey
+){
+
+state[selectionKey] =
+selectedKey;
+
+state[pageKey] = 1;
+
+if(searchInput){
+searchInput.value = "";
+}
+
+}
+
+panel.classList.toggle(
+"show",
+shouldShow
+);
+
+if(!shouldShow){
+return;
+}
+
+/*
+Risk ใช้เฉพาะข้อมูลระดับความเสี่ยงที่เลือก
+ส่วน Type / Year / Forest ใช้ currentFeatures
+ซึ่งถูกกรองตามสิ่งที่ผู้ใช้เลือกบนแผนที่แล้ว
+*/
+const sourceFeatures =
+getLinkedDisplayFeatures(
+currentFeatures
+);
+
+const sorted =
+sortListFeatures(sourceFeatures);
+
+const query =
+clean(
+searchInput?.value || ""
+)
+.toLowerCase();
+
+const filtered =
+query
+?
+sorted.filter(
+feature=>
+listFeatureSearchText(feature)
+.includes(query)
+)
+:
+sorted;
+
+const total =
+filtered.length;
+
+const pages =
+Math.max(
+1,
+Math.ceil(
+total
+/
+NAME_LIST_PAGE_SIZE
+)
+);
+
+state[pageKey] =
+Math.min(
+Math.max(
+1,
+state[pageKey] || 1
+),
+pages
+);
+
+const page =
+state[pageKey];
+
+const start =
+(page - 1)
+*
+NAME_LIST_PAGE_SIZE;
+
+const end =
+Math.min(
+start + NAME_LIST_PAGE_SIZE,
+total
+);
+
+const pageFeatures =
+filtered.slice(
+start,
+end
+);
+
+if(isType){
+
+$(prefix + "Title")
+.textContent =
+`รายชื่อ${state.selectedType}ที่แสดง`;
+
+}
+else if(isRisk){
+
+$(prefix + "Title")
+.textContent =
+`รายชื่อ อปท. ระดับ${riskLabel(state.riskLevel)}`;
+
+}
+else if(isYear){
+
+$(prefix + "Title")
+.textContent =
+`รายชื่อ อปท. ที่ถ่ายโอนภารกิจในปี ${state.selectedYear}`;
+
+}
+else{
+
+$(prefix + "Title")
+.textContent =
+`รายชื่อ อปท. ในจังหวัด${state.filters.province}`;
+
+}
+
+$(prefix + "Count")
+.textContent =
+`${fmt(sourceFeatures.length)} แห่ง`;
+
+$(prefix + "Status")
+.textContent =
+query
+?
+`พบ ${fmt(total)} จาก ${fmt(sourceFeatures.length)} แห่ง`
+:
+`เรียงตามจังหวัดและชื่อหน่วยงาน แสดงครั้งละ ${NAME_LIST_PAGE_SIZE} รายการ`;
+
+const items =
+$(prefix + "Items");
+
+if(!pageFeatures.length){
+
+items.innerHTML =
+'<div class="selection-list-empty">ไม่พบรายชื่อที่ตรงกับคำค้น</div>';
+
+}
+else{
+
+items.innerHTML = "";
+
+pageFeatures.forEach(
+feature=>{
+
+const p =
+feature.properties || {};
+
+const band =
+riskBand(p);
+
+let dotColor;
+let meta;
+
+if(isRisk){
+
+dotColor =
+RISK_COLORS[band]
+||
+RISK_COLORS.unknown;
+
+meta =
+riskScore(p) === null
+?
+riskLabel(band)
+:
+`${riskLabel(band)} ${fmt(riskScore(p),2)}`;
+
+}
+else{
+
+dotColor =
+TYPE_COLORS[getType(p)]
+||
+"#9ca8a3";
+
+meta =
+isForest
+?
+(
+getDistrict(p)
+||
+getProvince(p)
+||
+"-"
+)
+:
+(
+getProvince(p)
+||
+"-"
+);
+
+}
+
+const button =
+document.createElement(
+"button"
+);
+
+button.type =
+"button";
+
+button.className =
+"selection-list-item";
+
+button.innerHTML =
+`
+<span
+class="selection-list-dot"
+style="background:${esc(dotColor)}"
+></span>
+
+<span class="selection-list-main">
+
+<span class="selection-list-name">
+${esc(listFeatureName(feature))}
+</span>
+
+<span class="selection-list-place">
+${esc(listFeaturePlace(feature)||"ไม่ระบุพื้นที่")}
+</span>
+
+</span>
+
+<span class="selection-list-meta">
+${esc(meta)}
+</span>
+`;
+
+button.onclick =
+()=>{
+focusFeatureFromNameList(feature);
+};
+
+items.appendChild(
+button
+);
+
+}
+);
+
+}
+
+$(prefix + "Prev")
+.disabled =
+page <= 1;
+
+$(prefix + "Next")
+.disabled =
+page >= pages;
+
+$(prefix + "PageInfo")
+.innerHTML =
+total
+?
+`แสดง ${fmt(start+1)}–${fmt(end)} จาก ${fmt(total)}<br>หน้า ${fmt(page)}/${fmt(pages)}`
+:
+"0 รายการ";
+
+}
+
+
+function changeSelectionListPage(
+kind,
+delta
+){
+
+const pageKey =
+kind === "type"
+?
+"typeListPage"
+:
+(
+kind === "risk"
+?
+"riskListPage"
+:
+(
+kind === "year"
+?
+"yearListPage"
+:
+"forestListPage"
+)
+);
+
+state[pageKey] =
+Math.max(
+1,
+(state[pageKey] || 1)
++
+delta
+);
+
+renderSelectionList(
+kind
+);
+
+}
+
+
+/* ATTRIBUTE TABLE */
+
+function attributeFeatureSearchText(feature){
+const p=feature?.properties||{};
+const score=riskScore(p);
+return [
+listFeatureName(feature),
+getCode(p),
+getType(p),
+getProvince(p),
+getDistrict(p),
+getSubdistrict(p),
+getYear(p),
+riskLabel(riskBand(p)),
+score===null?"":String(score)
+].filter(Boolean).join(" ").toLowerCase();
+}
+
+function openAttributeTable(features,title="รายชื่อองค์กรปกครองส่วนท้องถิ่น"){
+attributeTableFeatures=sortListFeatures((features||[]).filter(validPoint));
+attributeTablePage=1;
+$("attributeSearch").value="";
+$("attributeTitle").textContent=title;
+$("attributeSub").textContent="คลิกปุ่ม ‘ดูบนแผนที่’ เพื่อไปยังตำแหน่งและเปิดรายละเอียดของหน่วยงาน";
+$("attributeModal").classList.add("show");
+$("attributeModal").setAttribute("aria-hidden","false");
+renderAttributeTable();
+}
+
+function closeAttributeTable(){
+$("attributeModal").classList.remove("show");
+$("attributeModal").setAttribute("aria-hidden","true");
+}
+
+function renderAttributeTable(){
+const query=clean($("attributeSearch").value).toLowerCase();
+attributeTableFiltered=query
+?attributeTableFeatures.filter(feature=>attributeFeatureSearchText(feature).includes(query))
+:attributeTableFeatures;
+
+const total=attributeTableFiltered.length;
+const pages=Math.max(1,Math.ceil(total/ATTRIBUTE_TABLE_PAGE_SIZE));
+attributeTablePage=Math.min(Math.max(1,attributeTablePage),pages);
+const start=(attributeTablePage-1)*ATTRIBUTE_TABLE_PAGE_SIZE;
+const end=Math.min(start+ATTRIBUTE_TABLE_PAGE_SIZE,total);
+attributeTablePageFeatures=attributeTableFiltered.slice(start,end);
+
+$("attributeCount").textContent=`${fmt(total)} รายการ`;
+$("attributePageInfo").innerHTML=total
+?`แสดง ${fmt(start+1)}–${fmt(end)} จาก ${fmt(total)} รายการ<br>หน้า ${fmt(attributeTablePage)}/${fmt(pages)}`
+:"ไม่พบข้อมูล";
+
+$("attributePrev").disabled=attributeTablePage<=1;
+$("attributeNext").disabled=attributeTablePage>=pages;
+
+const body=$("attributeTableBody");
+if(!attributeTablePageFeatures.length){
+body.innerHTML='<tr><td colspan="9" style="padding:28px;text-align:center;color:#8b9791">ไม่พบข้อมูลที่ตรงกับคำค้น</td></tr>';
+return;
+}
+
+body.innerHTML=attributeTablePageFeatures.map((feature,index)=>{
+const p=feature.properties||{};
+const band=riskBand(p);
+const score=riskScore(p);
+const riskText=score===null?riskLabel(band):`${riskLabel(band)} (${fmt(score,2)})`;
+return `
+<tr>
+<td class="attr-index">${fmt(start+index+1)}</td>
+<td class="attr-name">${esc(listFeatureName(feature))}</td>
+<td>${esc(getType(p)||"-")}</td>
+<td>${esc(getProvince(p)||"-")}</td>
+<td>${esc(getDistrict(p)||"-")}</td>
+<td>${esc(getSubdistrict(p)||"-")}</td>
+<td>${esc(getYear(p)||"-")}</td>
+<td>${esc(riskText||"-")}</td>
+<td class="attr-action"><button class="attr-map-btn" type="button" data-attr-index="${index}"><i class="bi bi-geo-alt"></i> ดู</button></td>
+</tr>`;
+}).join("");
+
+body.querySelectorAll(".attr-map-btn").forEach(button=>{
+button.onclick=()=>{
+const feature=attributeTablePageFeatures[Number(button.dataset.attrIndex)];
+if(!feature) return;
+closeAttributeTable();
+if($("dashboard").classList.contains("show")){
+$("dashboard").classList.remove("show");
+}
+focusFeatureFromNameList(feature);
+};
+});
+}
+
+function openCurrentTypeAttributeTable(){
+const title=state.selectedType
+?`รายชื่อ${state.selectedType}ทั้งหมดที่กำลังแสดง`
+:"รายชื่อองค์กรปกครองส่วนท้องถิ่นทั้งหมดที่กำลังแสดง";
+openAttributeTable(getLinkedDisplayFeatures(currentFeatures),title);
+}
+
+function openCurrentYearAttributeTable(){
+if(!state.selectedYear) return;
+openAttributeTable(getLinkedDisplayFeatures(currentFeatures),`รายชื่อ อปท. ที่ถ่ายโอนภารกิจในปี ${state.selectedYear}`);
+}
+
+function openCurrentForestAttributeTable(){
+if(!state.filters.province) return;
+
+openAttributeTable(
+getLinkedDisplayFeatures(currentFeatures),
+`รายชื่อ อปท. ในจังหวัด${state.filters.province}`
+);
+}
+
+function openCurrentRiskAttributeTable(){
+if(state.riskLevel === "all") return;
+
+const features =
+getRiskFeatures(
+currentFeatures
+);
+
+openAttributeTable(
+features,
+`รายชื่อ อปท. ระดับ${riskLabel(state.riskLevel)}`
+);
+}
+
+/* NAME LIST EVENTS */
+$("typeListSearch").oninput=()=>{
+state.typeListPage=1;
+renderSelectionList("type");
+};
+
+$("typeListPrev").onclick=()=>{
+changeSelectionListPage("type",-1);
+};
+
+$("typeListNext").onclick=()=>{
+changeSelectionListPage("type",1);
+};
+
+$("riskListSearch").oninput=()=>{
+state.riskListPage=1;
+renderSelectionList("risk");
+};
+
+$("riskListPrev").onclick=()=>{
+changeSelectionListPage("risk",-1);
+};
+
+$("riskListNext").onclick=()=>{
+changeSelectionListPage("risk",1);
+};
+
+$("yearListSearch").oninput=()=>{
+state.yearListPage=1;
+renderSelectionList("year");
+};
+
+$("yearListPrev").onclick=()=>{
+changeSelectionListPage("year",-1);
+};
+
+$("yearListNext").onclick=()=>{
+changeSelectionListPage("year",1);
+};
+
+
+$("forestListSearch").oninput=()=>{
+state.forestListPage=1;
+renderSelectionList("forest");
+};
+
+$("forestListPrev").onclick=()=>{
+changeSelectionListPage("forest",-1);
+};
+
+$("forestListNext").onclick=()=>{
+changeSelectionListPage("forest",1);
+};
+
+$("typeOpenAttributeBtn").onclick=openCurrentTypeAttributeTable;
+$("yearOpenAttributeBtn").onclick=openCurrentYearAttributeTable;
+$("forestOpenAttributeBtn").onclick=openCurrentForestAttributeTable;
+$("riskOpenAttributeBtn").onclick=openCurrentRiskAttributeTable;
+
+$("attributeSearch").oninput=()=>{
+attributeTablePage=1;
+renderAttributeTable();
+};
+
+$("attributePrev").onclick=()=>{
+attributeTablePage=Math.max(1,attributeTablePage-1);
+renderAttributeTable();
+};
+
+$("attributeNext").onclick=()=>{
+attributeTablePage++;
+renderAttributeTable();
+};
+
+$("attributeClose").onclick=closeAttributeTable;
+
+$("attributeModal").addEventListener("click",event=>{
+if(event.target===$("attributeModal")){
+closeAttributeTable();
+}
+});
+
+document.addEventListener("keydown",event=>{
+if(event.key==="Escape" && $("attributeModal").classList.contains("show")){
+closeAttributeTable();
+}
+});
+
+
 /* MODE */
 
 function showMode(mode){
@@ -7449,12 +10316,22 @@ mode === "overview"
 setTimeout(
 ()=>{
 
-updateTypeChart(
+const linkedGeographicFeatures =
+getLinkedDisplayFeatures(
 geographicFeatures
 );
 
+const linkedCurrentFeatures =
+getLinkedDisplayFeatures(
+currentFeatures
+);
+
+updateTypeChart(
+linkedGeographicFeatures
+);
+
 updateYearChart(
-geographicFeatures
+linkedGeographicFeatures
 .filter(
 feature=>
 !state.selectedType
@@ -7468,7 +10345,7 @@ state.selectedType
 );
 
 updateForest(
-geographicFeatures
+linkedCurrentFeatures
 );
 
 },
@@ -7520,6 +10397,9 @@ updateSelects();
 
 applyFilters(false);
 
+refreshAllBoundaryStyles();
+updateBoundaryLabels();
+
 map.setView(
 [13.2,101],
 6
@@ -7538,51 +10418,90 @@ state.filters.province =
 event.target.value;
 
 state.filters.district = "";
-
 state.filters.subdistrict = "";
-
 state.filters.lao = "";
 
 state.selectedType = "";
-
 state.selectedYear = "";
 
 state.forestPage = 1;
 
 updateSelects();
 
-applyFilters(true);
+/* ใช้ polygon จังหวัดจริงในการเน้นและซูม */
+applyFilters(false);
+
+refreshAllBoundaryStyles();
+
+if(state.filters.province){
+focusSelectedBoundary("province");
+}
 
 };
 
 
 $("districtFilter")
 .onchange =
-event=>{
+async event=>{
 
 state.filters.district =
 event.target.value;
 
 state.filters.subdistrict = "";
-
 state.filters.lao = "";
 
 state.selectedType = "";
-
 state.selectedYear = "";
 
 state.forestPage = 1;
 
 updateSelects();
 
-applyFilters(true);
+applyFilters(false);
+
+try{
+
+if(state.filters.district){
+
+/* เลือกอำเภอแล้วเปิด layer อำเภออัตโนมัติ */
+await ensureDistrictLayerVisible();
+
+refreshAllBoundaryStyles();
+
+focusSelectedBoundary(
+"district"
+);
+
+}
+else{
+
+refreshAllBoundaryStyles();
+
+if(state.filters.province){
+focusSelectedBoundary("province");
+}
+
+}
+
+}
+catch(error){
+
+console.error(error);
+
+alert(
+"โหลดขอบเขตอำเภอไม่สำเร็จ: "
++
+error.message
+);
+
+}
 
 };
 
 
 $("subdistrictFilter")
 .onchange =
-event=>{
+async event=>{
 
 state.filters.subdistrict =
 event.target.value;
@@ -7590,14 +10509,59 @@ event.target.value;
 state.filters.lao = "";
 
 state.selectedType = "";
-
 state.selectedYear = "";
 
 state.forestPage = 1;
 
 updateSelects();
 
-applyFilters(true);
+applyFilters(false);
+
+try{
+
+if(state.filters.subdistrict){
+
+/* เลือกตำบลแล้วเปิด layer ตำบลอัตโนมัติ */
+await ensureSubdistrictLayerVisible();
+
+refreshAllBoundaryStyles();
+
+focusSelectedBoundary(
+"subdistrict"
+);
+
+}
+else{
+
+refreshAllBoundaryStyles();
+
+if(state.filters.district){
+
+await ensureDistrictLayerVisible();
+
+focusSelectedBoundary("district");
+
+}
+else if(state.filters.province){
+
+focusSelectedBoundary("province");
+
+}
+
+}
+
+}
+catch(error){
+
+console.error(error);
+
+alert(
+"โหลดขอบเขตตำบลไม่สำเร็จ: "
++
+error.message
+);
+
+}
 
 };
 
@@ -7811,6 +10775,10 @@ $("clearRiskLevelBtn")
 state.riskLevel =
 "all";
 
+state.typeListPage = 1;
+state.yearListPage = 1;
+state.forestListPage = 1;
+
 renderMarkers(
 currentFeatures
 );
@@ -7998,12 +10966,18 @@ currentBase
 
 }
 
+currentBaseKey =
+button.dataset.base;
+
 currentBase =
 basemaps[
-button.dataset.base
+currentBaseKey
 ];
 
 currentBase.addTo(map);
+
+/* ให้ basemap ใน Dashboard เปลี่ยนตามแผนที่หลักทันที */
+syncDashboardBasemap();
 
 document
 .querySelectorAll(
@@ -8064,6 +11038,7 @@ event.target.checked
 provinceLayer.addTo(map);
 
 refreshProvinceStyles();
+updateBoundaryLabels();
 
 }
 else{
@@ -8103,33 +11078,12 @@ async event=>{
 
 try{
 
-if(
-event.target.checked
-){
+if(event.target.checked){
 
-if(!districtLayer){
+await ensureDistrictLayerVisible();
 
-districtLayer =
-await loadBoundary(
-
-"district.geojson",
-
-"#df9147",
-
-[
-"AMP_NAM_T",
-"AMPHOE_T",
-"AMPHUR_T",
-"อำเภอ",
-"ADM2_TH",
-"NAME_2"
-]
-
-);
-
-}
-
-districtLayer.addTo(map);
+refreshDistrictStyles();
+updateBoundaryLabels();
 
 }
 else if(districtLayer){
@@ -8138,6 +11092,8 @@ map.removeLayer(
 districtLayer
 );
 
+districtLabelLayer.clearLayers();
+
 }
 
 }
@@ -8145,8 +11101,7 @@ catch(error){
 
 console.error(error);
 
-event.target.checked =
-false;
+event.target.checked = false;
 
 alert(
 "โหลดขอบเขตอำเภอไม่สำเร็จ: "
@@ -8165,32 +11120,12 @@ async event=>{
 
 try{
 
-if(
-event.target.checked
-){
+if(event.target.checked){
 
-if(!subdistrictLayer){
+await ensureSubdistrictLayerVisible();
 
-subdistrictLayer =
-await loadBoundary(
-
-"subdistrict.geojson",
-
-"#727cab",
-
-[
-"TAM_NAM_T",
-"TAMBON_T",
-"ตำบล",
-"ADM3_TH",
-"NAME_3"
-]
-
-);
-
-}
-
-subdistrictLayer.addTo(map);
+refreshSubdistrictStyles();
+updateBoundaryLabels();
 
 }
 else if(subdistrictLayer){
@@ -8199,6 +11134,8 @@ map.removeLayer(
 subdistrictLayer
 );
 
+subdistrictLabelLayer.clearLayers();
+
 }
 
 }
@@ -8206,8 +11143,7 @@ catch(error){
 
 console.error(error);
 
-event.target.checked =
-false;
+event.target.checked = false;
 
 alert(
 "โหลดขอบเขตตำบลไม่สำเร็จ: "
@@ -8810,6 +11746,129 @@ context.restore();
 };
 
 
+/* DASH BAR VALUE LABELS */
+
+const dashboardTypeValueLabelPlugin = {
+
+id:"dashboardTypeValueLabels",
+
+afterDatasetsDraw(chart){
+
+const meta =
+chart.getDatasetMeta(0);
+
+const values =
+chart.data.datasets[0]?.data || [];
+
+const ctx =
+chart.ctx;
+
+ctx.save();
+
+ctx.font =
+'700 7.5px "Prompt"';
+
+ctx.fillStyle =
+"#43544c";
+
+ctx.textAlign =
+"left";
+
+ctx.textBaseline =
+"middle";
+
+meta.data.forEach(
+(bar,index)=>{
+
+const value =
+values[index];
+
+if(
+value === null
+||
+value === undefined
+){
+return;
+}
+
+ctx.fillText(
+fmt(value),
+bar.x + 7,
+bar.y
+);
+
+}
+);
+
+ctx.restore();
+
+}
+
+};
+
+
+const dashboardYearValueLabelPlugin = {
+
+id:"dashboardYearValueLabels",
+
+afterDatasetsDraw(chart){
+
+const meta =
+chart.getDatasetMeta(0);
+
+const values =
+chart.data.datasets[0]?.data || [];
+
+const ctx =
+chart.ctx;
+
+ctx.save();
+
+ctx.font =
+'700 7px "Prompt"';
+
+ctx.fillStyle =
+"#53645c";
+
+ctx.textAlign =
+"center";
+
+ctx.textBaseline =
+"bottom";
+
+meta.data.forEach(
+(bar,index)=>{
+
+const value =
+values[index];
+
+if(
+value === null
+||
+value === undefined
+){
+return;
+}
+
+ctx.fillText(
+fmt(value),
+bar.x,
+Math.max(
+bar.y - 4,
+10
+)
+);
+
+}
+);
+
+ctx.restore();
+
+}
+
+};
+
+
 /* DASH TYPE */
 
 function renderDashboardTypeChart(features){
@@ -8828,6 +11887,38 @@ counts[type]
 0
 );
 
+const dashboardTypeColors =
+keys.map(
+type=>
+TYPE_COLORS[type]
+||
+"#9ca8a3"
+);
+
+const dashboardTypeBadgeStyles = {
+
+"เทศบาลนคร":{
+background:"#e9f7f3",
+color:"#397f70"
+},
+
+"เทศบาลเมือง":{
+background:"#fff0f0",
+color:"#b45454"
+},
+
+"เทศบาลตำบล":{
+background:"#fff3df",
+color:"#9b651b"
+},
+
+"องค์การบริหารส่วนตำบล":{
+background:"#fdebf5",
+color:"#a95683"
+}
+
+};
+
 if(dashTypeChart){
 dashTypeChart.destroy();
 }
@@ -8837,10 +11928,10 @@ new Chart(
 $("dashType"),
 {
 
-type:"doughnut",
+type:"bar",
 
 plugins:[
-dashboardCenterPlugin
+dashboardTypeValueLabelPlugin
 ],
 
 data:{
@@ -8853,22 +11944,22 @@ datasets:[
 data:values,
 
 backgroundColor:
-keys.map(
-type=>
-TYPE_COLORS[type]
-),
+dashboardTypeColors,
 
-borderColor:"#fff",
+borderColor:
+dashboardTypeColors,
 
-borderWidth:2,
+borderWidth:0,
 
-borderRadius:4,
+borderRadius:9,
 
-spacing:0,
+borderSkipped:false,
 
-offset:0,
+minBarLength:9,
 
-hoverOffset:3
+barThickness:18,
+
+maxBarThickness:20
 
 }
 ]
@@ -8877,11 +11968,17 @@ hoverOffset:3
 
 options:{
 
+indexAxis:"y",
+
 responsive:true,
 
 maintainAspectRatio:false,
 
-cutout:"56%",
+layout:{
+padding:{
+right:30
+}
+},
 
 plugins:{
 
@@ -8895,8 +11992,56 @@ callbacks:{
 
 label:
 context=>
-` ${context.label}: ${fmt(context.raw)} แห่ง`
+` ${fmt(context.raw)} แห่ง`
 
+}
+
+}
+
+},
+
+scales:{
+
+x:{
+
+beginAtZero:true,
+
+grid:{
+color:"rgba(95,111,82,.09)"
+},
+
+border:{
+display:false
+},
+
+ticks:{
+precision:0,
+color:"#74796f",
+font:{
+family:"Prompt",
+size:6.5
+}
+}
+
+},
+
+y:{
+
+grid:{
+display:false
+},
+
+border:{
+display:false
+},
+
+ticks:{
+color:"#4f5d47",
+font:{
+family:"Prompt",
+size:6.7,
+weight:"500"
+}
 }
 
 }
@@ -8908,24 +12053,29 @@ context=>
 }
 );
 
+$("dashTypeTotal").textContent = fmt(values.reduce((sum,value)=>sum+value,0));
+
 $("dashTypeLegend")
 .innerHTML =
 keys.map(
-type=>
+(type,index)=>
 `
 
 <div class="dashboard-type-row">
 
 <span
 class="dashboard-type-dot"
-style="background:${TYPE_COLORS[type]}"
+style="background:${dashboardTypeColors[index]}"
 ></span>
 
 <span>
 ${esc(type)}
 </span>
 
-<span class="dashboard-type-number">
+<span
+class="dashboard-type-number"
+style="background:${dashboardTypeBadgeStyles[type]?.background || "#f2f6f4"};color:${dashboardTypeBadgeStyles[type]?.color || "#53645c"}"
+>
 ${fmt(counts[type] || 0)}
 </span>
 
@@ -8934,6 +12084,39 @@ ${fmt(counts[type] || 0)}
 `
 )
 .join("");
+
+}
+
+
+/* DASH TRANSFER STATUS */
+
+function dashboardTransferStats(features){
+
+let received = 0;
+let pending = 0;
+
+features.forEach(feature=>{
+
+const year =
+getYear(
+feature.properties || {}
+);
+
+/* นับเป็นรับมอบแล้วเมื่อมีปี พ.ศ. ที่ใช้งานได้ */
+if(/^(?:24|25|26)\d{2}$/.test(year)){
+received++;
+}
+else{
+pending++;
+}
+
+});
+
+return {
+received,
+pending,
+total:features.length
+};
 
 }
 
@@ -8966,6 +12149,10 @@ $("dashYear"),
 {
 
 type:"bar",
+
+plugins:[
+dashboardYearValueLabelPlugin
+],
 
 data:{
 
@@ -9005,6 +12192,12 @@ options:{
 responsive:true,
 
 maintainAspectRatio:false,
+
+layout:{
+padding:{
+top:16
+}
+},
 
 plugins:{
 
@@ -9094,6 +12287,18 @@ size:7
 
 }
 );
+
+
+const transferStats =
+dashboardTransferStats(features);
+
+$("dashTransferReceived")
+.textContent =
+`${fmt(transferStats.received)} แห่ง`;
+
+$("dashTransferPending")
+.textContent =
+`${fmt(transferStats.pending)} แห่ง`;
 
 }
 
@@ -9204,27 +12409,35 @@ context=>
 const bands = [
 
 {
-label:"เสี่ยงมาก",
+label:"เสี่ยงมาก >90%",
 count:counts.high,
-color:RISK_COLORS.high
+color:RISK_COLORS.high,
+background:"#fff0f0",
+textColor:"#a94c4c"
 },
 
 {
-label:"เสี่ยง",
+label:"เสี่ยง 50–90%",
 count:counts.medium,
-color:RISK_COLORS.medium
+color:RISK_COLORS.medium,
+background:"#fff1df",
+textColor:"#a26617"
 },
 
 {
-label:"เสี่ยงน้อย",
+label:"เสี่ยงน้อย 1–49%",
 count:counts.low,
-color:RISK_COLORS.low
+color:RISK_COLORS.low,
+background:"#fff9df",
+textColor:"#8b7821"
 },
 
 {
-label:"ไม่เสี่ยง",
+label:"ไม่เสี่ยง 0%",
 count:counts.none,
-color:RISK_COLORS.none
+color:RISK_COLORS.none,
+background:"#eaf8f2",
+textColor:"#3f806a"
 }
 
 ];
@@ -9246,7 +12459,10 @@ style="background:${item.color}"
 ${item.label}
 </span>
 
-<span class="dashboard-risk-number">
+<span
+class="dashboard-risk-number"
+style="background:${item.background};color:${item.textColor}"
+>
 ${fmt(item.count)}
 </span>
 
@@ -9275,22 +12491,22 @@ const items = [
 
 [
 RISK_COLORS.high,
-"เสี่ยงมาก >90"
+"เสี่ยงมาก >90%"
 ],
 
 [
 RISK_COLORS.medium,
-"เสี่ยง 50–90"
+"เสี่ยง 50–90%"
 ],
 
 [
 RISK_COLORS.low,
-"เสี่ยงน้อย 1–49"
+"เสี่ยงน้อย 1–49%"
 ],
 
 [
 RISK_COLORS.none,
-"ไม่เสี่ยง 0"
+"ไม่เสี่ยง 0%"
 ]
 
 ];
@@ -9351,6 +12567,52 @@ ${esc(type)}
 
 /* DASH MAP */
 
+function syncDashboardBasemap(){
+
+if(!dashMap){
+return;
+}
+
+if(
+dashBaseLayer
+&&
+dashMap.hasLayer(dashBaseLayer)
+){
+dashMap.removeLayer(dashBaseLayer);
+}
+
+const source =
+BASEMAP_SOURCES[currentBaseKey]
+||
+BASEMAP_SOURCES.light;
+
+dashBaseLayer =
+L.tileLayer(
+source.url,
+{
+...source.options,
+detectRetina:true,
+keepBuffer:4,
+updateWhenIdle:true,
+className:"dashboard-basemap-tiles"
+}
+);
+
+dashBaseLayer.addTo(dashMap);
+dashBaseLayer.bringToBack();
+
+setTimeout(
+()=>{
+if(dashMap){
+dashMap.invalidateSize(false);
+}
+},
+80
+);
+
+}
+
+
 function renderDashboardMap(
 features,
 fit=true
@@ -9372,13 +12634,7 @@ preferCanvas:true
 6
 );
 
-L.tileLayer(
-"https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-{
-maxZoom:19
-}
-)
-.addTo(dashMap);
+syncDashboardBasemap();
 
 }
 
@@ -9540,35 +12796,6 @@ feature.properties || {}
 0
 );
 
-const riskValues =
-dashboardFeatures
-.map(
-feature=>
-riskScore(
-feature.properties || {}
-)
-)
-.filter(
-value=>
-value !== null
-);
-
-const averageRisk =
-riskValues.length
-
-?
-
-riskValues.reduce(
-(total,value)=>
-total + value,
-0
-)
-/
-riskValues.length
-
-:
-
-0;
 
 $("kpiPoints")
 .textContent =
@@ -9586,12 +12813,6 @@ $("kpiForest")
 .innerHTML =
 `${fmt(totalForest,2)} <span class="dashboard-kpi-unit">ไร่</span>`;
 
-$("kpiAverageRisk")
-.textContent =
-fmt(
-averageRisk,
-1
-);
 
 const provinceRows =
 buildDashboardProvinceStats(
@@ -9661,10 +12882,10 @@ renderDashboardRanking(
 topRisk,
 
 row=>
-fmt(
+`${fmt(
 row.averageRisk,
 2
-),
+)} %`,
 
 "risk"
 
@@ -9965,62 +13186,6 @@ pointData.features
 );
 
 }
-
-
-/* LANGUAGE */
-
-document
-.querySelectorAll(
-".language-btn"
-)
-.forEach(button=>{
-
-button.onclick =
-()=>{
-
-document
-.querySelectorAll(
-".language-btn"
-)
-.forEach(item=>{
-
-item.classList.toggle(
-"active",
-item === button
-);
-
-});
-
-localStorage.setItem(
-"mapLang",
-button.dataset.lang
-);
-
-};
-
-});
-
-
-const savedLang =
-localStorage.getItem(
-"mapLang"
-)
-||
-"th";
-
-
-document
-.querySelectorAll(
-".language-btn"
-)
-.forEach(button=>{
-
-button.classList.toggle(
-"active",
-button.dataset.lang === savedLang
-);
-
-});
 
 
 /* ESC */
@@ -10472,441 +13637,6 @@ showLoadError
 })();
 
 </script>
-<script>
-/* =========================================================
-   TH / EN LANGUAGE - SAFE ADD-ON
-   ไม่แตะระบบโหลด GeoJSON
-========================================================= */
 
-(function () {
-
-    const TH_TO_EN = {
-
-        /* BRAND */
-        "ไฟป่าท้องถิ่น": "Local Wildfire",
-        "แผนที่แสดงจุดที่ตั้งขององค์กรปกครองส่วนท้องถิ่นที่ได้รับการถ่ายโอนภารกิจไฟป่า":
-            "Map showing local administrative organizations transferred with wildfire management responsibilities",
-
-        /* MAIN TABS */
-        "พื้นที่ทั้งหมด": "All Areas",
-        "ข้อมูลที่แสดง": "Displayed Data",
-        "พื้นที่เสี่ยง": "Risk Areas",
-
-        /* FILTER */
-        "จังหวัด": "Province",
-        "อำเภอ": "District",
-        "ตำบล": "Subdistrict",
-        "องค์กรปกครองส่วนท้องถิ่น": "Local Administrative Organization",
-
-        "ทุกจังหวัด": "All Provinces",
-        "ทุกอำเภอ": "All Districts",
-        "ทุกตำบล": "All Subdistricts",
-        "ทุกองค์กรปกครองส่วนท้องถิ่น": "All Local Administrative Organizations",
-
-        "ล้างตัวกรอง": "Clear Filters",
-        "ดูทั้งหมด": "Show All",
-
-        /* TYPE */
-        "ประเภทองค์กรปกครองส่วนท้องถิ่น":
-            "Local Administrative Organization Type",
-
-        "เทศบาลนคร": "City Municipality",
-        "เทศบาลเมือง": "Town Municipality",
-        "เทศบาลตำบล": "Subdistrict Municipality",
-        "องค์การบริหารส่วนตำบล":
-            "Subdistrict Administrative Organization",
-
-        "แสดงทุกประเภท": "Show All Types",
-
-        "แสดงจำนวนแยกตามประเภท และกดเลือกเพื่อแสดงบนแผนที่":
-            "Number by organization type. Click a type to display it on the map.",
-
-        /* YEAR */
-        "จำนวนองค์กรปกครองส่วนท้องถิ่นที่ได้รับการถ่ายโอนภารกิจแยกตามรายปี":
-            "Local Administrative Organizations Transferred by Year",
-
-        "สีเข้มหมายถึงมีจำนวนมาก สีอ่อนหมายถึงมีจำนวนน้อย และคลิกแท่งปีเพื่อแสดงบนแผนที่":
-            "Darker colors indicate higher values. Click a year to display it on the map.",
-
-        "แสดงทุกปี": "Show All Years",
-
-        /* FOREST */
-        "พื้นที่ป่าสงวนฯ แยกตามจังหวัด":
-            "Reserved Forest Area by Province",
-
-        "สรุปพื้นที่ป่าสงวนฯ ตามข้อมูลที่กำลังแสดงบนแผนที่ และเรียงจากพื้นที่มากไปน้อย":
-            "Reserved forest area based on the data currently shown on the map, sorted from largest to smallest",
-
-        "คลิกแท่งจังหวัดเพื่อเลือกจังหวัด และคลิกจังหวัดเดิมซ้ำเพื่อกลับมาแสดงทุกจังหวัด":
-            "Click a province bar to select it. Click the same province again to show all provinces.",
-
-        "แสดงทุกจังหวัด": "Show All Provinces",
-        "ไร่": "rai",
-
-        /* RISK */
-        "ค้นหาองค์กรปกครองส่วนท้องถิ่น":
-            "Search Local Administrative Organization",
-
-        "ระดับความเสี่ยง": "Risk Level",
-        "เสี่ยงมาก": "Very High Risk",
-        "เสี่ยง": "Risk",
-        "เสี่ยงน้อย": "Low Risk",
-        "ไม่เสี่ยง": "No Risk",
-        "ไม่ทราบ": "Unknown",
-
-        "มากกว่า 90": "Over 90",
-        "50–90": "50–90",
-        "1–49": "1–49",
-        "0": "0",
-
-        "ล้าง": "Clear",
-
-        /* SEARCH */
-        "ค้นหาพื้นที่ที่สนใจ": "Search Area of Interest",
-
-        /* LAYERS */
-        "ชั้นข้อมูล": "Layers",
-        "จุดที่ตั้ง อปท.": "Local Organization Locations",
-        "ขอบเขตจังหวัด": "Province Boundaries",
-        "แบ่งสีตามภาค": "Color by Region",
-        "ขอบเขตอำเภอ": "District Boundaries",
-        "ขอบเขตตำบล": "Subdistrict Boundaries",
-
-        /* BASEMAP */
-        "แผนที่": "Basemap",
-        "แผนที่พื้นฐาน": "Light Map",
-        "แผนที่ถนน": "Street Map",
-        "ภาพถ่ายดาวเทียม": "Satellite",
-        "แผนที่โทนมืด": "Dark Map",
-
-        /* LEGEND */
-        "ประเภทองค์กรปกครองส่วนท้องถิ่น":
-            "Local Administrative Organization Type",
-
-        /* INFORMATION */
-        "ข้อมูลทั่วไป": "General Information",
-        "ข้อมูลพื้นที่": "Area Information",
-        "ข้อมูลภารกิจ": "Mission Information",
-        "เอกสาร": "Documents",
-
-        "ชื่อ": "Name",
-        "ประเภท อปท.": "Organization Type",
-        "รหัส อปท.": "Organization Code",
-
-        "พื้นที่รับผิดชอบ": "Responsible Area",
-        "ชื่อหน่วยงาน": "Agency",
-        "ปีที่ถ่ายโอนภารกิจ": "Transfer Year",
-        "ป่าสงวนฯ": "Reserved Forest Area",
-
-        "พิกัด": "Coordinates",
-        "ละติจูด": "Latitude",
-        "ลองจิจูด": "Longitude",
-
-        /* DASHBOARD */
-        "ภาพรวม": "Overview",
-        "ข้อมูลภาพรวม": "Overview",
-        "จำนวน อปท.": "Total Organizations",
-        "จำนวนจังหวัด": "Provinces",
-        "พื้นที่ป่าสงวนฯ": "Reserved Forest Area",
-        "ค่าเฉลี่ยความเสี่ยง": "Average Risk",
-
-        "จังหวัดที่มีจำนวน อปท. มากที่สุด":
-            "Provinces with the Most Local Organizations",
-
-        "จังหวัดที่มีพื้นที่ป่าสงวนฯ มากที่สุด":
-            "Provinces with the Largest Reserved Forest Area",
-
-        "จังหวัดที่มีค่าเฉลี่ยความเสี่ยงสูงที่สุด":
-            "Provinces with the Highest Average Risk",
-
-        "สัดส่วนของข้อมูลที่กำลังแสดง":
-            "Share of Currently Displayed Data",
-
-        "สีเข้มแสดงปีที่มีจำนวน อปท. มากกว่า":
-            "Darker colors indicate years with more organizations",
-
-        "จำนวนองค์กรปกครองส่วนท้องถิ่นแยกตามระดับความเสี่ยง":
-            "Local Organizations by Risk Level",
-
-        "ภาพรวมระดับความเสี่ยงของข้อมูลที่แสดง":
-            "Risk overview of displayed data",
-
-        "ประเภท อปท.": "Organization Type",
-        "ความเสี่ยง": "Risk",
-
-        /* STATUS */
-        "กำลังโหลดข้อมูลแผนที่...": "Loading map data..."
-    };
-
-
-    /* สร้าง EN -> TH อัตโนมัติ */
-    const EN_TO_TH = {};
-
-    Object.keys(TH_TO_EN).forEach(th => {
-        EN_TO_TH[TH_TO_EN[th]] = th;
-    });
-
-
-    let currentLang =
-        localStorage.getItem("mapLang") || "th";
-
-
-    /* -----------------------------------------
-       แปล text node
-    ----------------------------------------- */
-
-    function translateTextNodes(lang) {
-
-        const dictionary =
-            lang === "en"
-                ? TH_TO_EN
-                : EN_TO_TH;
-
-        const walker =
-            document.createTreeWalker(
-                document.body,
-                NodeFilter.SHOW_TEXT
-            );
-
-        const nodes = [];
-
-        while (walker.nextNode()) {
-            nodes.push(walker.currentNode);
-        }
-
-        nodes.forEach(node => {
-
-            const original = node.nodeValue;
-
-            if (!original) return;
-
-            const trimmed = original.trim();
-
-            if (!trimmed) return;
-
-            if (!dictionary[trimmed]) return;
-
-            node.nodeValue =
-                original.replace(
-                    trimmed,
-                    dictionary[trimmed]
-                );
-
-        });
-
-    }
-
-
-    /* -----------------------------------------
-       แปล placeholder
-    ----------------------------------------- */
-
-    function translatePlaceholders(lang) {
-
-        const searchInput =
-            document.getElementById("searchInput");
-
-        if (searchInput) {
-
-            searchInput.placeholder =
-                lang === "en"
-                    ? "e.g. Bangkok, Chiang Mai, Krabi"
-                    : "เช่น กรุงเทพ เชียงใหม่ กระบี่";
-
-        }
-
-
-        const riskSearchInput =
-            document.getElementById("riskSearchInput");
-
-        if (riskSearchInput) {
-
-            riskSearchInput.placeholder =
-                lang === "en"
-                    ? "Search local organization..."
-                    : "ค้นหาองค์กรปกครองส่วนท้องถิ่น...";
-
-        }
-
-    }
-
-
-    /* -----------------------------------------
-       ภาษา select
-    ----------------------------------------- */
-
-    function translateSelectOptions(lang) {
-
-        const replacements =
-            lang === "en"
-                ? {
-                    "ทุกจังหวัด": "All Provinces",
-                    "ทุกอำเภอ": "All Districts",
-                    "ทุกตำบล": "All Subdistricts",
-                    "ทุกองค์กรปกครองส่วนท้องถิ่น":
-                        "All Local Administrative Organizations"
-                }
-                : {
-                    "All Provinces": "ทุกจังหวัด",
-                    "All Districts": "ทุกอำเภอ",
-                    "All Subdistricts": "ทุกตำบล",
-                    "All Local Administrative Organizations":
-                        "ทุกองค์กรปกครองส่วนท้องถิ่น"
-                };
-
-
-        document
-            .querySelectorAll("select option")
-            .forEach(option => {
-
-                const text =
-                    option.textContent.trim();
-
-                if (replacements[text]) {
-                    option.textContent =
-                        replacements[text];
-                }
-
-            });
-
-    }
-
-
-    /* -----------------------------------------
-       ปุ่ม TH / EN
-    ----------------------------------------- */
-
-    function updateLanguageButtons(lang) {
-
-        document
-            .querySelectorAll(".language-btn")
-            .forEach(button => {
-
-                button.classList.toggle(
-                    "active",
-                    button.dataset.lang === lang
-                );
-
-            });
-
-    }
-
-
-    /* -----------------------------------------
-       ฟังก์ชันหลัก
-    ----------------------------------------- */
-
-    function applyLanguage(lang) {
-
-        currentLang = lang;
-
-        localStorage.setItem(
-            "mapLang",
-            lang
-        );
-
-        document.documentElement.lang =
-            lang === "en"
-                ? "en"
-                : "th";
-
-        translateTextNodes(lang);
-
-        translatePlaceholders(lang);
-
-        translateSelectOptions(lang);
-
-        updateLanguageButtons(lang);
-
-    }
-
-
-    /* -----------------------------------------
-       จับปุ่มภาษา
-    ----------------------------------------- */
-
-    document
-        .querySelectorAll(".language-btn")
-        .forEach(button => {
-
-            button.onclick = function () {
-
-                applyLanguage(
-                    this.dataset.lang
-                );
-
-            };
-
-        });
-
-
-    /* -----------------------------------------
-       ถ้าระบบสร้างข้อความใหม่ตอนเลือก filter
-       ให้แปลซ้ำเฉพาะเมื่อ EN เปิดอยู่
-    ----------------------------------------- */
-
-    let translating = false;
-
-    const observer =
-        new MutationObserver(() => {
-
-            if (
-                currentLang !== "en" ||
-                translating
-            ) {
-                return;
-            }
-
-            translating = true;
-
-            setTimeout(() => {
-
-                translateTextNodes("en");
-                translatePlaceholders("en");
-                translateSelectOptions("en");
-
-                translating = false;
-
-            }, 30);
-
-        });
-
-
-    observer.observe(
-        document.body,
-        {
-            childList: true,
-            subtree: true
-        }
-    );
-
-
-    /* -----------------------------------------
-       โหลดภาษาที่บันทึกไว้
-       รอให้ map โหลดก่อน
-    ----------------------------------------- */
-
-    window.addEventListener(
-        "load",
-        function () {
-
-            setTimeout(
-                function () {
-
-                    applyLanguage(
-                        localStorage.getItem("mapLang")
-                        ||
-                        "th"
-                    );
-
-                },
-                800
-            );
-
-        }
-    );
-
-})();
-</script>
 </body>
 </html>
